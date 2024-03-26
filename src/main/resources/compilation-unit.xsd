@@ -1667,37 +1667,43 @@
     <xs:complexType name="methodInvocation">
         <xs:sequence>
 
-            <!--			<xs:choice>-->
+            <xs:choice>
 
-            <!--				<xs:element ref="f:methodName"/>-->
+                <xs:sequence>
+                    <xs:element ref="f:methodName"/>
+                    <xs:element ref="f:leftParen"/>
+                    <xs:element ref="f:argumentList" minOccurs="0"/>
+                    <xs:element ref="f:rightParen"/>
+                </xs:sequence>
 
-            <!--				<xs:sequence>-->
+                <xs:sequence>
+                    <xs:choice>
 
-            <!--					<xs:choice>-->
-            <!--						<xs:sequence>-->
-            <!--							<xs:element ref="f:typeName"/>-->
-            <!--							<xs:sequence minOccurs="0">-->
-            <!--								<xs:element ref="f:dot"/>-->
-            <!--								<xs:element ref="f:super"/>-->
-            <!--							</xs:sequence>-->
-            <!--						</xs:sequence>-->
+                        <xs:sequence>
+                            <xs:element ref="f:typeName"/>
+                            <xs:sequence minOccurs="0">
+                                <xs:element ref="f:dot"/>
+                                <xs:element ref="f:super"/>
+                                <xs:element ref="f:dot"/>
+                            </xs:sequence>
+                        </xs:sequence>
 
-            <!--						<xs:element ref="f:expressionName"/>-->
-            <!--						<xs:element ref="f:primary"/>-->
-            <!--						<xs:element ref="f:super"/>-->
+                        <xs:element ref="f:expressionName"/>
+                        <xs:element ref="f:primary"/>
+                        <xs:element ref="f:super"/>
 
-            <!--					</xs:choice>-->
+                    </xs:choice>
 
-            <!--					<xs:element ref="f:dot"/>-->
-            <!--					<xs:element ref="f:typeArguments" minOccurs="0"/>-->
-            <!--					<xs:element ref="f:identifier"/>-->
-            <!--				</xs:sequence>-->
-            <!--			</xs:choice>-->
+                    <xs:sequence>
+                        <xs:element ref="f:typeArguments" minOccurs="0"/>
+                        <xs:element ref="f:identifier"/>
+                        <xs:element ref="f:leftParen"/>
+                        <xs:element ref="f:argumentList" minOccurs="0"/>
+                        <xs:element ref="f:rightParen"/>
+                    </xs:sequence>
+                </xs:sequence>
 
-            <xs:element ref="f:leftParen"/>
-            <xs:element ref="f:argumentList" minOccurs="0"/>
-            <xs:element ref="f:rightParen"/>
-
+           </xs:choice>
         </xs:sequence>
     </xs:complexType>
 
