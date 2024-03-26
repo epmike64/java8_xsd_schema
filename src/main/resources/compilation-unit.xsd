@@ -2375,16 +2375,16 @@
                 <xs:element name="or" type="xs:string" fixed="|"/>
                 <xs:element name="xor" type="xs:string" fixed="^"/>
                 <xs:element name="leftShift" type="xs:string" fixed="&lt;&lt;"/>
-                <xs:element name="rightShift" type="xs:string" fixed=">>"/>
-                <xs:element name="unsignedRightShift" type="xs:string" fixed=">>>"/>
-<!--                <xs:element name="lessThan" type="xs:string" fixed="&lt;"/>-->
-<!--                <xs:element name="greaterThan" type="xs:string" fixed=">"/>-->
-<!--                <xs:element name="lessThanOrEqual" type="xs:string" fixed="&lt;="/>-->
-<!--                <xs:element name="greaterThanOrEqual" type="xs:string" fixed=">="/>-->
-<!--                <xs:element name="equal" type="xs:string" fixed="=="/>-->
-<!--                <xs:element name="notEqual" type="xs:string" fixed="!="/>-->
-<!--                <xs:element name="and" type="xs:string" fixed="&amp;&amp;"/>-->
-<!--                <xs:element name="or" type="xs:string" fixed="||"/>-->
+                <xs:element name="rightShift" type="xs:string" fixed="&gt;&gt;"/>
+                <xs:element name="unsignedRightShift" type="xs:string" fixed="&gt;&gt;&gt;"/>
+                <xs:element name="lessThan" type="xs:string" fixed="&lt;"/>
+                <xs:element name="greaterThan" type="xs:string" fixed="&gt;"/>
+                <xs:element name="lessThanOrEqual" type="xs:string" fixed="&lt;="/>
+                <xs:element name="greaterThanOrEqual" type="xs:string" fixed="&gt;="/>
+                <xs:element name="equal" type="xs:string" fixed="=="/>
+                <xs:element name="notEqual" type="xs:string" fixed="!="/>
+                <xs:element name="andBool" type="xs:string" fixed="&amp;&amp;"/>
+                <xs:element name="orBool" type="xs:string" fixed="||"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
