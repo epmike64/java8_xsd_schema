@@ -2360,4 +2360,102 @@
             <xs:element ref="f:double"/>
         </xs:choice>
     </xs:complexType>
+
+    <xs:element name="infixOperator" type="f:infixOperator"/>
+    <xs:complexType name="infixOperator">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="add" type="xs:string" fixed="+"/>
+
+                <xs:element name="sub" type="xs:string" fixed="-"/>
+                <xs:element name="mul" type="xs:string" fixed="*"/>
+                <xs:element name="div" type="xs:string" fixed="/"/>
+                <xs:element name="mod" type="xs:string" fixed="%"/>
+                <xs:element name="and" type="xs:string" fixed="&amp;"/>
+                <xs:element name="or" type="xs:string" fixed="|"/>
+                <xs:element name="xor" type="xs:string" fixed="^"/>
+                <xs:element name="leftShift" type="xs:string" fixed="&lt;&lt;"/>
+                <xs:element name="rightShift" type="xs:string" fixed=">>"/>
+                <xs:element name="unsignedRightShift" type="xs:string" fixed=">>>"/>
+<!--                <xs:element name="lessThan" type="xs:string" fixed="&lt;"/>-->
+<!--                <xs:element name="greaterThan" type="xs:string" fixed=">"/>-->
+<!--                <xs:element name="lessThanOrEqual" type="xs:string" fixed="&lt;="/>-->
+<!--                <xs:element name="greaterThanOrEqual" type="xs:string" fixed=">="/>-->
+<!--                <xs:element name="equal" type="xs:string" fixed="=="/>-->
+<!--                <xs:element name="notEqual" type="xs:string" fixed="!="/>-->
+<!--                <xs:element name="and" type="xs:string" fixed="&amp;&amp;"/>-->
+<!--                <xs:element name="or" type="xs:string" fixed="||"/>-->
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="prefixOperator" type="f:prefixOperator"/>
+    <xs:complexType name="prefixOperator">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="inc" type="xs:string" fixed="++"/>
+                <xs:element name="dec" type="xs:string" fixed="--"/>
+                <xs:element name="not" type="xs:string" fixed="!"/>
+                <xs:element name="neg" type="xs:string" fixed="-"/>
+                <xs:element name="pos" type="xs:string" fixed="+"/>
+                <xs:element name="complement" type="xs:string" fixed="~"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="postfixOperator" type="f:postfixOperator"/> <!-- TODO: Add postfixOperator to expression3 -->
+    <xs:complexType name="postfixOperator">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="inc" type="xs:string" fixed="++"/>
+                <xs:element name="dec" type="xs:string" fixed="--"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="assignmentOperator" type="f:assignmentOperator"/>
+    <xs:complexType name="assignmentOperator">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="assign" type="xs:string" fixed="="/>
+                <xs:element name="addAssign" type="xs:string" fixed="+="/>
+                <xs:element name="subAssign" type="xs:string" fixed="-="/>
+                <xs:element name="mulAssign" type="xs:string" fixed="*="/>
+                <xs:element name="divAssign" type="xs:string" fixed="/="/>
+                <xs:element name="modAssign" type="xs:string" fixed="%="/>
+                <xs:element name="andAssign" type="xs:string" fixed="&amp;="/>
+                <xs:element name="orAssign" type="xs:string" fixed="|="/>
+                <xs:element name="xorAssign" type="xs:string" fixed="^="/>
+                <xs:element name="leftShiftAssign" type="xs:string" fixed="&lt;&lt;="/>
+                <xs:element name="rightShiftAssign" type="xs:string" fixed=">>="/>
+                <xs:element name="unsignedRightShiftAssign" type="xs:string" fixed=">>>="/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="literal" type="f:literal"/>
+    <xs:complexType name="literal">
+        <xs:choice>
+            <xs:element name="integerLiteral" type="xs:string"/>
+            <xs:element name="floatingPointLiteral" type="xs:string"/>
+            <xs:element name="booleanLiteral" type="xs:string"/>
+            <xs:element name="characterLiteral" type="xs:string"/>
+            <xs:element name="stringLiteral" type="xs:string"/>
+            <xs:element name="nullLiteral" type="xs:string"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:complexType name="integerLiteral">
+        <xs:sequence>
+            <xs:element name="decimalIntegerLiteral" type="xs:string"/>
+            <xs:element name="hexIntegerLiteral" type="xs:string"/>
+            <xs:element name="octalIntegerLiteral" type="xs:string"/>
+            <xs:element name="binaryIntegerLiteral" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
 </xs:schema>
