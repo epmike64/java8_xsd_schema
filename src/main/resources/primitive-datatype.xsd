@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.flint.com/flint-lang"
+           xmlns:f="http://www.flint.com/flint-lang"
+           elementFormDefault="qualified">
+
+
+	<xs:simpleType name="int">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="-2147483648"/>
+			<xs:maxInclusive value="2147483647"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="long">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="-9223372036854775808"/>
+			<xs:maxInclusive value="9223372036854775807"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float">
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="double">
+		<xs:restriction base="xs:double"/>
+	</xs:simpleType>
+	<xs:simpleType name="boolean">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="char">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="byte">
+		<xs:restriction base="xs:byte"/>
+	</xs:simpleType>
+	<xs:simpleType name="short">
+		<xs:restriction base="xs:short"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="string">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="void">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="void"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="null">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="null"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="basicType" type="f:basicType"/>
+	<xs:complexType name="basicType">
+		<xs:choice>
+			<xs:element name="int" type="f:int"/>
+			<xs:element name="long" type="f:long"/>
+			<xs:element name="float" type="f:float"/>
+			<xs:element name="double" type="f:double"/>
+			<xs:element name="boolean" type="f:boolean"/>
+			<xs:element name="char" type="f:char"/>
+			<xs:element name="byte" type="f:byte"/>
+			<xs:element name="short" type="f:short"/>
+			<xs:element name="string" type="f:string"/>
+			<xs:element name="void" type="f:void"/>
+			<xs:element name="null" type="f:null"/>
+		</xs:choice>
+	</xs:complexType>
+
+</xs:schema>

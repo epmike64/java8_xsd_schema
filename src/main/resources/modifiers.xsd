@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.flint.com/flint-lang"
+           xmlns:f="http://www.flint.com/flint-lang"
+           elementFormDefault="qualified">
+
+	<xs:element name="modifiers" type="f:modifiers"/>
+	<xs:complexType name="modifiers">
+		<xs:choice>
+			<xs:element name="public" type="xs:string" fixed="public"/>
+			<xs:element name="protected" type="xs:string" fixed="protected"/>
+			<xs:element name="private" type="xs:string" fixed="private"/>
+			<xs:element name="static" type="xs:string" fixed="static"/>
+			<xs:element name="abstract" type="xs:string" fixed="abstract"/>
+			<xs:element name="final" type="xs:string" fixed="final"/>
+			<xs:element name="native" type="xs:string" fixed="native"/>
+			<xs:element name="synchronized" type="xs:string" fixed="synchronized"/>
+			<xs:element name="transient" type="xs:string" fixed="transient"/>
+			<xs:element name="volatile" type="xs:string" fixed="volatile"/>
+			<xs:element name="strictfp" type="xs:string" fixed="strictfp"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
