@@ -2259,7 +2259,7 @@
         <xs:choice>
             <xs:sequence>
                 <xs:element ref="f:identifier"/>
-                <xs:element ref="typeArguments" minOccurs="0"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
             </xs:sequence>
             <xs:sequence>
                 <xs:element ref="f:classOrInterfaceType"/>
