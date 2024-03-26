@@ -1,0 +1,1772 @@
+<f:compilationUnit xmlns:f="http://www.flint.com/flint-lang">
+  <!--Optional:-->
+  <f:packageDeclaration>
+    <f:package>string</f:package>
+    <f:qualifiedIdentifier>
+      <f:identifier>string</f:identifier>
+      <f:dot>string</f:dot>
+      <f:identifier>string</f:identifier>
+    </f:qualifiedIdentifier>
+    <f:semicolon>string</f:semicolon>
+  </f:packageDeclaration>
+  <!--Zero or more repetitions:-->
+  <f:importDeclaration>
+    <f:import>string</f:import>
+    <!--Optional:-->
+    <f:static>string</f:static>
+    <f:qualifiedIdentifier>
+      <f:identifier>string</f:identifier>
+      <f:dot>string</f:dot>
+      <f:identifier>string</f:identifier>
+    </f:qualifiedIdentifier>
+    <f:dot>string</f:dot>
+    <f:star>string</f:star>
+    <f:semicolon>string</f:semicolon>
+  </f:importDeclaration>
+  <!--Zero or more repetitions:-->
+  <f:typeDeclaration>
+    <!--You have a CHOICE of the next 2 items at this level-->
+    <f:classDeclaration>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <f:normalClassDeclaration>
+        <!--You have a CHOICE of the next 2 items at this level-->
+        <!--Zero or more repetitions:-->
+        <f:classModifier>
+          <!--You have a CHOICE of the next 7 items at this level-->
+          <f:public>string</f:public>
+          <f:protected>string</f:protected>
+          <f:private>string</f:private>
+          <f:static>string</f:static>
+          <f:abstract>string</f:abstract>
+          <f:final>string</f:final>
+          <f:strictfp>string</f:strictfp>
+        </f:classModifier>
+        <f:class>string</f:class>
+        <f:identifier>string</f:identifier>
+        <!--Optional:-->
+        <f:typeParameters>
+          <f:lessThan>string</f:lessThan>
+          <f:typeParameterList>
+            <f:typeParameter>
+              <f:identifier>string</f:identifier>
+              <!--Optional:-->
+              <f:typeBound>
+                <f:extends>string</f:extends>
+                <f:classType>
+                  <!--You have a CHOICE of the next 2 items at this level-->
+                  <f:identifier>string</f:identifier>
+                  <!--Optional:-->
+                  <f:typeArguments>
+                    <f:lessThan>string</f:lessThan>
+                    <f:typeArgumentList>
+                      <f:typeArgument>
+                        <!--You have a CHOICE of the next 2 items at this level-->
+                        <f:referenceType>
+                          <!--You have a CHOICE of the next 3 items at this level-->
+                          <f:classOrInterfaceType>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:classType/>
+                            <f:interfaceType>
+                              <f:classType/>
+                            </f:interfaceType>
+                          </f:classOrInterfaceType>
+                          <f:typeVariable>
+                            <f:identifier>string</f:identifier>
+                          </f:typeVariable>
+                          <f:arrayType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:primitiveType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:numericType>
+                                <!--You have a CHOICE of the next 7 items at this level-->
+                                <f:int>string</f:int>
+                                <f:long>string</f:long>
+                                <f:short>string</f:short>
+                                <f:byte>string</f:byte>
+                                <f:char>string</f:char>
+                                <f:float>string</f:float>
+                                <f:double>string</f:double>
+                              </f:numericType>
+                              <f:boolean>string</f:boolean>
+                            </f:primitiveType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType>
+                                <f:classType/>
+                              </f:interfaceType>
+                            </f:classOrInterfaceType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                          </f:arrayType>
+                        </f:referenceType>
+                        <f:wildcard>
+                          <f:questionMark>string</f:questionMark>
+                          <!--Optional:-->
+                          <f:wildCardBounds>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:extends>string</f:extends>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                            <f:super>string</f:super>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                          </f:wildCardBounds>
+                        </f:wildcard>
+                      </f:typeArgument>
+                      <f:comma>string</f:comma>
+                      <f:typeArgument>
+                        <!--You have a CHOICE of the next 2 items at this level-->
+                        <f:referenceType>
+                          <!--You have a CHOICE of the next 3 items at this level-->
+                          <f:classOrInterfaceType>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:classType/>
+                            <f:interfaceType>
+                              <f:classType/>
+                            </f:interfaceType>
+                          </f:classOrInterfaceType>
+                          <f:typeVariable>
+                            <f:identifier>string</f:identifier>
+                          </f:typeVariable>
+                          <f:arrayType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:primitiveType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:numericType>
+                                <!--You have a CHOICE of the next 7 items at this level-->
+                                <f:int>string</f:int>
+                                <f:long>string</f:long>
+                                <f:short>string</f:short>
+                                <f:byte>string</f:byte>
+                                <f:char>string</f:char>
+                                <f:float>string</f:float>
+                                <f:double>string</f:double>
+                              </f:numericType>
+                              <f:boolean>string</f:boolean>
+                            </f:primitiveType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType>
+                                <f:classType/>
+                              </f:interfaceType>
+                            </f:classOrInterfaceType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                          </f:arrayType>
+                        </f:referenceType>
+                        <f:wildcard>
+                          <f:questionMark>string</f:questionMark>
+                          <!--Optional:-->
+                          <f:wildCardBounds>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:extends>string</f:extends>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                            <f:super>string</f:super>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                          </f:wildCardBounds>
+                        </f:wildcard>
+                      </f:typeArgument>
+                    </f:typeArgumentList>
+                    <f:greaterThan>string</f:greaterThan>
+                  </f:typeArguments>
+                  <f:classOrInterfaceType>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <f:classType/>
+                    <f:interfaceType>
+                      <f:classType/>
+                    </f:interfaceType>
+                  </f:classOrInterfaceType>
+                  <f:dot>string</f:dot>
+                  <f:identifier>string</f:identifier>
+                  <!--Optional:-->
+                  <f:typeArguments>
+                    <f:lessThan>string</f:lessThan>
+                    <f:typeArgumentList>
+                      <f:typeArgument>
+                        <!--You have a CHOICE of the next 2 items at this level-->
+                        <f:referenceType>
+                          <!--You have a CHOICE of the next 3 items at this level-->
+                          <f:classOrInterfaceType>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:classType/>
+                            <f:interfaceType>
+                              <f:classType/>
+                            </f:interfaceType>
+                          </f:classOrInterfaceType>
+                          <f:typeVariable>
+                            <f:identifier>string</f:identifier>
+                          </f:typeVariable>
+                          <f:arrayType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:primitiveType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:numericType>
+                                <!--You have a CHOICE of the next 7 items at this level-->
+                                <f:int>string</f:int>
+                                <f:long>string</f:long>
+                                <f:short>string</f:short>
+                                <f:byte>string</f:byte>
+                                <f:char>string</f:char>
+                                <f:float>string</f:float>
+                                <f:double>string</f:double>
+                              </f:numericType>
+                              <f:boolean>string</f:boolean>
+                            </f:primitiveType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType>
+                                <f:classType/>
+                              </f:interfaceType>
+                            </f:classOrInterfaceType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                          </f:arrayType>
+                        </f:referenceType>
+                        <f:wildcard>
+                          <f:questionMark>string</f:questionMark>
+                          <!--Optional:-->
+                          <f:wildCardBounds>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:extends>string</f:extends>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                            <f:super>string</f:super>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                          </f:wildCardBounds>
+                        </f:wildcard>
+                      </f:typeArgument>
+                      <f:comma>string</f:comma>
+                      <f:typeArgument>
+                        <!--You have a CHOICE of the next 2 items at this level-->
+                        <f:referenceType>
+                          <!--You have a CHOICE of the next 3 items at this level-->
+                          <f:classOrInterfaceType>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:classType/>
+                            <f:interfaceType>
+                              <f:classType/>
+                            </f:interfaceType>
+                          </f:classOrInterfaceType>
+                          <f:typeVariable>
+                            <f:identifier>string</f:identifier>
+                          </f:typeVariable>
+                          <f:arrayType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:primitiveType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:numericType>
+                                <!--You have a CHOICE of the next 7 items at this level-->
+                                <f:int>string</f:int>
+                                <f:long>string</f:long>
+                                <f:short>string</f:short>
+                                <f:byte>string</f:byte>
+                                <f:char>string</f:char>
+                                <f:float>string</f:float>
+                                <f:double>string</f:double>
+                              </f:numericType>
+                              <f:boolean>string</f:boolean>
+                            </f:primitiveType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType>
+                                <f:classType/>
+                              </f:interfaceType>
+                            </f:classOrInterfaceType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                          </f:arrayType>
+                        </f:referenceType>
+                        <f:wildcard>
+                          <f:questionMark>string</f:questionMark>
+                          <!--Optional:-->
+                          <f:wildCardBounds>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:extends>string</f:extends>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                            <f:super>string</f:super>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                          </f:wildCardBounds>
+                        </f:wildcard>
+                      </f:typeArgument>
+                    </f:typeArgumentList>
+                    <f:greaterThan>string</f:greaterThan>
+                  </f:typeArguments>
+                  <f:identifier>string</f:identifier>
+                </f:classType>
+                <f:ampersand>string</f:ampersand>
+                <f:interfaceType>
+                  <f:classType>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <f:identifier>string</f:identifier>
+                    <!--Optional:-->
+                    <f:typeArguments>
+                      <f:lessThan>string</f:lessThan>
+                      <f:typeArgumentList>
+                        <f:typeArgument>
+                          <!--You have a CHOICE of the next 2 items at this level-->
+                          <f:referenceType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType/>
+                            </f:classOrInterfaceType>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:arrayType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:primitiveType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:numericType>
+                                  <!--You have a CHOICE of the next 7 items at this level-->
+                                  <f:int>string</f:int>
+                                  <f:long>string</f:long>
+                                  <f:short>string</f:short>
+                                  <f:byte>string</f:byte>
+                                  <f:char>string</f:char>
+                                  <f:float>string</f:float>
+                                  <f:double>string</f:double>
+                                </f:numericType>
+                                <f:boolean>string</f:boolean>
+                              </f:primitiveType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType/>
+                              </f:classOrInterfaceType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                            </f:arrayType>
+                          </f:referenceType>
+                          <f:wildcard>
+                            <f:questionMark>string</f:questionMark>
+                            <!--Optional:-->
+                            <f:wildCardBounds>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:extends>string</f:extends>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                              <f:super>string</f:super>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                            </f:wildCardBounds>
+                          </f:wildcard>
+                        </f:typeArgument>
+                        <f:comma>string</f:comma>
+                        <f:typeArgument>
+                          <!--You have a CHOICE of the next 2 items at this level-->
+                          <f:referenceType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType/>
+                            </f:classOrInterfaceType>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:arrayType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:primitiveType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:numericType>
+                                  <!--You have a CHOICE of the next 7 items at this level-->
+                                  <f:int>string</f:int>
+                                  <f:long>string</f:long>
+                                  <f:short>string</f:short>
+                                  <f:byte>string</f:byte>
+                                  <f:char>string</f:char>
+                                  <f:float>string</f:float>
+                                  <f:double>string</f:double>
+                                </f:numericType>
+                                <f:boolean>string</f:boolean>
+                              </f:primitiveType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType/>
+                              </f:classOrInterfaceType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                            </f:arrayType>
+                          </f:referenceType>
+                          <f:wildcard>
+                            <f:questionMark>string</f:questionMark>
+                            <!--Optional:-->
+                            <f:wildCardBounds>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:extends>string</f:extends>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                              <f:super>string</f:super>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                            </f:wildCardBounds>
+                          </f:wildcard>
+                        </f:typeArgument>
+                      </f:typeArgumentList>
+                      <f:greaterThan>string</f:greaterThan>
+                    </f:typeArguments>
+                    <f:classOrInterfaceType>
+                      <!--You have a CHOICE of the next 2 items at this level-->
+                      <f:classType/>
+                      <f:interfaceType/>
+                    </f:classOrInterfaceType>
+                    <f:dot>string</f:dot>
+                    <f:identifier>string</f:identifier>
+                    <!--Optional:-->
+                    <f:typeArguments>
+                      <f:lessThan>string</f:lessThan>
+                      <f:typeArgumentList>
+                        <f:typeArgument>
+                          <!--You have a CHOICE of the next 2 items at this level-->
+                          <f:referenceType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType/>
+                            </f:classOrInterfaceType>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:arrayType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:primitiveType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:numericType>
+                                  <!--You have a CHOICE of the next 7 items at this level-->
+                                  <f:int>string</f:int>
+                                  <f:long>string</f:long>
+                                  <f:short>string</f:short>
+                                  <f:byte>string</f:byte>
+                                  <f:char>string</f:char>
+                                  <f:float>string</f:float>
+                                  <f:double>string</f:double>
+                                </f:numericType>
+                                <f:boolean>string</f:boolean>
+                              </f:primitiveType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType/>
+                              </f:classOrInterfaceType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                            </f:arrayType>
+                          </f:referenceType>
+                          <f:wildcard>
+                            <f:questionMark>string</f:questionMark>
+                            <!--Optional:-->
+                            <f:wildCardBounds>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:extends>string</f:extends>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                              <f:super>string</f:super>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                            </f:wildCardBounds>
+                          </f:wildcard>
+                        </f:typeArgument>
+                        <f:comma>string</f:comma>
+                        <f:typeArgument>
+                          <!--You have a CHOICE of the next 2 items at this level-->
+                          <f:referenceType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType/>
+                            </f:classOrInterfaceType>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:arrayType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:primitiveType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:numericType>
+                                  <!--You have a CHOICE of the next 7 items at this level-->
+                                  <f:int>string</f:int>
+                                  <f:long>string</f:long>
+                                  <f:short>string</f:short>
+                                  <f:byte>string</f:byte>
+                                  <f:char>string</f:char>
+                                  <f:float>string</f:float>
+                                  <f:double>string</f:double>
+                                </f:numericType>
+                                <f:boolean>string</f:boolean>
+                              </f:primitiveType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType/>
+                              </f:classOrInterfaceType>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:dims>
+                                <f:squareBrackets>string</f:squareBrackets>
+                              </f:dims>
+                            </f:arrayType>
+                          </f:referenceType>
+                          <f:wildcard>
+                            <f:questionMark>string</f:questionMark>
+                            <!--Optional:-->
+                            <f:wildCardBounds>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:extends>string</f:extends>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                              <f:super>string</f:super>
+                              <f:referenceType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType/>
+                                </f:classOrInterfaceType>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:arrayType>
+                                  <!--You have a CHOICE of the next 3 items at this level-->
+                                  <f:primitiveType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:numericType>
+                                      <!--You have a CHOICE of the next 7 items at this level-->
+                                      <f:int>string</f:int>
+                                      <f:long>string</f:long>
+                                      <f:short>string</f:short>
+                                      <f:byte>string</f:byte>
+                                      <f:char>string</f:char>
+                                      <f:float>string</f:float>
+                                      <f:double>string</f:double>
+                                    </f:numericType>
+                                    <f:boolean>string</f:boolean>
+                                  </f:primitiveType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:classOrInterfaceType>
+                                    <!--You have a CHOICE of the next 2 items at this level-->
+                                    <f:classType/>
+                                    <f:interfaceType/>
+                                  </f:classOrInterfaceType>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                  <f:typeVariable>
+                                    <f:identifier>string</f:identifier>
+                                  </f:typeVariable>
+                                  <f:dims>
+                                    <f:squareBrackets>string</f:squareBrackets>
+                                  </f:dims>
+                                </f:arrayType>
+                              </f:referenceType>
+                            </f:wildCardBounds>
+                          </f:wildcard>
+                        </f:typeArgument>
+                      </f:typeArgumentList>
+                      <f:greaterThan>string</f:greaterThan>
+                    </f:typeArguments>
+                    <f:identifier>string</f:identifier>
+                  </f:classType>
+                </f:interfaceType>
+              </f:typeBound>
+            </f:typeParameter>
+            <f:comma>string</f:comma>
+            <f:typeParameter>
+              <f:identifier>string</f:identifier>
+              <!--Optional:-->
+              <f:typeBound>
+                <f:extends>string</f:extends>
+                <f:classType>
+                  <!--You have a CHOICE of the next 2 items at this level-->
+                  <f:identifier>string</f:identifier>
+                  <!--Optional:-->
+                  <f:typeArguments>
+                    <f:lessThan>string</f:lessThan>
+                    <f:typeArgumentList>
+                      <f:typeArgument>
+                        <!--You have a CHOICE of the next 2 items at this level-->
+                        <f:referenceType>
+                          <!--You have a CHOICE of the next 3 items at this level-->
+                          <f:classOrInterfaceType>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:classType/>
+                            <f:interfaceType>
+                              <f:classType/>
+                            </f:interfaceType>
+                          </f:classOrInterfaceType>
+                          <f:typeVariable>
+                            <f:identifier>string</f:identifier>
+                          </f:typeVariable>
+                          <f:arrayType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:primitiveType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:numericType>
+                                <!--You have a CHOICE of the next 7 items at this level-->
+                                <f:int>string</f:int>
+                                <f:long>string</f:long>
+                                <f:short>string</f:short>
+                                <f:byte>string</f:byte>
+                                <f:char>string</f:char>
+                                <f:float>string</f:float>
+                                <f:double>string</f:double>
+                              </f:numericType>
+                              <f:boolean>string</f:boolean>
+                            </f:primitiveType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType>
+                                <f:classType/>
+                              </f:interfaceType>
+                            </f:classOrInterfaceType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                          </f:arrayType>
+                        </f:referenceType>
+                        <f:wildcard>
+                          <f:questionMark>string</f:questionMark>
+                          <!--Optional:-->
+                          <f:wildCardBounds>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:extends>string</f:extends>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                            <f:super>string</f:super>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                          </f:wildCardBounds>
+                        </f:wildcard>
+                      </f:typeArgument>
+                      <f:comma>string</f:comma>
+                      <f:typeArgument>
+                        <!--You have a CHOICE of the next 2 items at this level-->
+                        <f:referenceType>
+                          <!--You have a CHOICE of the next 3 items at this level-->
+                          <f:classOrInterfaceType>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:classType/>
+                            <f:interfaceType>
+                              <f:classType/>
+                            </f:interfaceType>
+                          </f:classOrInterfaceType>
+                          <f:typeVariable>
+                            <f:identifier>string</f:identifier>
+                          </f:typeVariable>
+                          <f:arrayType>
+                            <!--You have a CHOICE of the next 3 items at this level-->
+                            <f:primitiveType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:numericType>
+                                <!--You have a CHOICE of the next 7 items at this level-->
+                                <f:int>string</f:int>
+                                <f:long>string</f:long>
+                                <f:short>string</f:short>
+                                <f:byte>string</f:byte>
+                                <f:char>string</f:char>
+                                <f:float>string</f:float>
+                                <f:double>string</f:double>
+                              </f:numericType>
+                              <f:boolean>string</f:boolean>
+                            </f:primitiveType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:classOrInterfaceType>
+                              <!--You have a CHOICE of the next 2 items at this level-->
+                              <f:classType/>
+                              <f:interfaceType>
+                                <f:classType/>
+                              </f:interfaceType>
+                            </f:classOrInterfaceType>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                            <f:typeVariable>
+                              <f:identifier>string</f:identifier>
+                            </f:typeVariable>
+                            <f:dims>
+                              <f:squareBrackets>string</f:squareBrackets>
+                            </f:dims>
+                          </f:arrayType>
+                        </f:referenceType>
+                        <f:wildcard>
+                          <f:questionMark>string</f:questionMark>
+                          <!--Optional:-->
+                          <f:wildCardBounds>
+                            <!--You have a CHOICE of the next 2 items at this level-->
+                            <f:extends>string</f:extends>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                            <f:super>string</f:super>
+                            <f:referenceType>
+                              <!--You have a CHOICE of the next 3 items at this level-->
+                              <f:classOrInterfaceType>
+                                <!--You have a CHOICE of the next 2 items at this level-->
+                                <f:classType/>
+                                <f:interfaceType>
+                                  <f:classType/>
+                                </f:interfaceType>
+                              </f:classOrInterfaceType>
+                              <f:typeVariable>
+                                <f:identifier>string</f:identifier>
+                              </f:typeVariable>
+                              <f:arrayType>
+                                <!--You have a CHOICE of the next 3 items at this level-->
+                                <f:primitiveType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:numericType>
+                                    <!--You have a CHOICE of the next 7 items at this level-->
+                                    <f:int>string</f:int>
+                                    <f:long>string</f:long>
+                                    <f:short>string</f:short>
+                                    <f:byte>string</f:byte>
+                                    <f:char>string</f:char>
+                                    <f:float>string</f:float>
+                                    <f:double>string</f:double>
+                                  </f:numericType>
+                                  <f:boolean>string</f:boolean>
+                                </f:primitiveType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:classOrInterfaceType>
+                                  <!--You have a CHOICE of the next 2 items at this level-->
+                                  <f:classType/>
+                                  <f:interfaceType>
+                                    <f:classType/>
+                                  </f:interfaceType>
+                                </f:classOrInterfaceType>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                                <f:typeVariable>
+                                  <f:identifier>string</f:identifier>
+                                </f:typeVariable>
+                                <f:dims>
+                                  <f:squareBrackets>string</f:squareBrackets>
+                                </f:dims>
+                              </f:arrayType>
+                            </f:referenceType>
+                          </f:wildCardBounds>
+                        </f:wildcard>
+                      </f:typeArgument>
+                    </f:typeArgumentList>
+                    <f:greaterThan>string</f:greaterThan>
+                  </f:typeArguments>
+                  <f:classOrInterfaceType>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <f:classType/>
+                    <f:interfaceType>
+                      <f:classType/>
+                    </f:interfaceType>
+                  </f:classOrInterfaceType>
+                  <f:dot>string</f:dot>
+                  <f:identifier>string</f:identifier>
+                  <!--Optional:-->
+                  <f:identifier>string</f:identifier>
+                </f:classType>
+              </f:typeBound>
+            </f:typeParameter>
+          </f:typeParameterList>
+          <f:greaterThan>string</f:greaterThan>
+        </f:typeParameters>
+        <!--Optional:-->
+        <f:superInterfaces>
+          <f:implements>string</f:implements>
+          <f:interfaceTypeList>
+            <f:interfaceType>
+              <f:classType>
+                <!--You have a CHOICE of the next 2 items at this level-->
+                <f:identifier>string</f:identifier>
+                <!--Optional:-->
+                <f:classOrInterfaceType>
+                  <!--You have a CHOICE of the next 2 items at this level-->
+                  <f:classType/>
+                  <f:interfaceType/>
+                </f:classOrInterfaceType>
+                <f:dot>string</f:dot>
+                <f:identifier>string</f:identifier>
+                <!--Optional:-->
+                <f:identifier>string</f:identifier>
+              </f:classType>
+            </f:interfaceType>
+          </f:interfaceTypeList>
+        </f:superInterfaces>
+        <f:classBody>
+          <f:leftBrace>string</f:leftBrace>
+          <!--Zero or more repetitions:-->
+          <f:rightBrace>string</f:rightBrace>
+        </f:classBody>
+      </f:normalClassDeclaration>
+      <f:enumDeclaration>
+        <f:classModifier>
+          <!--You have a CHOICE of the next 7 items at this level-->
+          <f:public>string</f:public>
+          <f:protected>string</f:protected>
+          <f:private>string</f:private>
+          <f:static>string</f:static>
+          <f:abstract>string</f:abstract>
+          <f:final>string</f:final>
+          <f:strictfp>string</f:strictfp>
+        </f:classModifier>
+        <f:enum>string</f:enum>
+        <f:identifier>string</f:identifier>
+        <!--Optional:-->
+        <f:enumBody>
+          <f:leftBrace>string</f:leftBrace>
+          <!--Optional:-->
+          <!--Optional:-->
+          <!--Optional:-->
+          <f:rightBrace>string</f:rightBrace>
+        </f:enumBody>
+      </f:enumDeclaration>
+    </f:classDeclaration>
+    <f:interfaceDeclaration>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <f:normalInterfaceDeclaration>
+        <!--You have a CHOICE of the next 2 items at this level-->
+        <!--Zero or more repetitions:-->
+        <f:interface>string</f:interface>
+        <f:identifier>string</f:identifier>
+        <!--Optional:-->
+        <!--Optional:-->
+        <f:interfaceBody>
+          <f:leftBrace>string</f:leftBrace>
+          <!--Zero or more repetitions:-->
+          <f:rightBrace>string</f:rightBrace>
+        </f:interfaceBody>
+      </f:normalInterfaceDeclaration>
+      <f:annotationTypeDeclaration>
+        <!--Zero or more repetitions:-->
+        <f:at>string</f:at>
+        <f:identifier>string</f:identifier>
+        <f:annotationTypeBody>
+          <f:leftBrace>string</f:leftBrace>
+          <!--Zero or more repetitions:-->
+          <f:rightBrace>string</f:rightBrace>
+        </f:annotationTypeBody>
+      </f:annotationTypeDeclaration>
+    </f:interfaceDeclaration>
+  </f:typeDeclaration>
+</f:compilationUnit>
