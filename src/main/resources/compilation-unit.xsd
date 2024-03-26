@@ -4,2326 +4,2354 @@
            xmlns:f="http://www.flint.com/flint-lang"
            elementFormDefault="qualified">
 
-	<xs:include schemaLocation="lexical.xsd"/>
-	<xs:include schemaLocation="keywords.xsd"/>
-	<xs:include schemaLocation="primitive-datatype.xsd"/>
-	<xs:include schemaLocation="modifiers.xsd"/>
-
-
-	<xs:element name="compilationUnit" type="f:compilationUnit"/>
-	<xs:complexType name="compilationUnit">
-		<xs:sequence>
-			<xs:element ref="f:packageDeclaration" minOccurs="0"/>
-			<xs:element ref="f:importDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:typeDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="packageDeclaration" type="f:packageDeclaration"/>
-	<xs:complexType name="packageDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:package"/>
-			<xs:element ref="f:qualifiedIdentifier"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="importDeclaration" type="f:importDeclaration"/>
-	<xs:complexType name="importDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:import"/>
-			<xs:element ref="f:static" minOccurs="0"/>
-			<xs:element ref="f:qualifiedIdentifier"/>
-			<xs:sequence minOccurs="0">
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:star"/>
-			</xs:sequence>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeDeclaration" type="f:typeDeclaration"/>
-	<xs:complexType name="typeDeclaration">
-		<xs:choice>
-			<xs:element ref="f:classDeclaration"/>
-			<xs:element ref="f:interfaceDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="classDeclaration" type="f:classDeclaration"/>
-	<xs:complexType name="classDeclaration">
-		<xs:choice>
-			<xs:element ref="f:normalClassDeclaration"/>
-			<xs:element ref="f:enumDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-
-	<xs:element name="normalClassDeclaration" type="f:normalClassDeclaration"/>
-	<xs:complexType name="normalClassDeclaration">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:classModifier" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:class"/>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:typeParameters" minOccurs="0"/>
-				<xs:element ref="f:superClass" minOccurs="0"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:superInterfaces"/>
-				<xs:element ref="f:classBody"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="classModifier" type="f:classModifier"/>
-	<xs:complexType name="classModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:protected"/>
-			<xs:element ref="f:private"/>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:abstract"/>
-			<xs:element ref="f:final"/>
-			<xs:element ref="f:strictfp"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="typeParameters" type="f:typeParameters"/>
-	<xs:complexType name="typeParameters">
-		<xs:sequence>
-			<xs:element ref="f:lessThan"/>
-			<xs:element ref="f:typeParameterList"/>
-			<xs:element ref="f:greaterThan"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeParameterList" type="f:typeParameterList"/>
-	<xs:complexType name="typeParameterList">
-		<xs:sequence>
-			<xs:element ref="f:typeParameter"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:typeParameter"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeParameter" type="f:typeParameter"/>
-	<xs:complexType name="typeParameter">
-		<xs:sequence>
-
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:typeBound" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeBound" type="f:typeBound"/>
-	<xs:complexType name="typeBound">
-		<xs:sequence>
-			<xs:element ref="f:extends"/>
-			<xs:element ref="f:classType"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:ampersand"/>
-				<xs:element ref="f:interfaceType"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="superClass" type="f:superClass"/>
-	<xs:complexType name="superClass">
-		<xs:sequence>
-			<xs:element ref="f:extends"/>
-			<xs:choice>
-				<xs:element ref="f:typeVariable"/>
-				<xs:element ref="f:classOrInterfaceType"/>
-				<xs:element ref="f:additionalBound" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:choice>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="additionalBound" type="f:additionalBound"/>
-	<xs:complexType name="additionalBound">
-		<xs:sequence>
-			<xs:element ref="f:ampersand"/>
-			<xs:element ref="f:interfaceType"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="interfaceTypeList" type="f:interfaceTypeList"/>
-	<xs:complexType name="interfaceTypeList">
-		<xs:sequence>
-			<xs:element ref="f:interfaceType"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:interfaceType"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="classBody" type="f:classBody"/>
-	<xs:complexType name="classBody">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:classBodyDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="classBodyDeclaration" type="f:classBodyDeclaration"/>
-	<xs:complexType name="classBodyDeclaration">
-		<xs:choice>
-			<xs:element ref="f:classMemberDeclaration"/>
-			<xs:element ref="f:constructorDeclaration"/>
-			<xs:element ref="f:staticInitializer"/>
-			<xs:element ref="f:instanceInitializer"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="staticInitializer" type="f:staticInitializer"/>
-	<xs:complexType name="staticInitializer">
-		<xs:sequence>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:block"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="instanceInitializer" type="f:instanceInitializer"/>
-	<xs:complexType name="instanceInitializer">
-		<xs:sequence>
-			<xs:element ref="f:block"/>
-		</xs:sequence>
-	</xs:complexType>
-
-
-	<xs:element name="classMemberDeclaration" type="f:classMemberDeclaration"/>
-	<xs:complexType name="classMemberDeclaration">
-		<xs:choice>
-			<xs:element ref="f:fieldDeclaration"/>
-			<xs:element ref="f:methodDeclaration"/>
-			<xs:element ref="f:classDeclaration"/>
-			<xs:element ref="f:interfaceDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="fieldDeclaration" type="f:fieldDeclaration"/>
-	<xs:complexType name="fieldDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:fieldModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorList"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="fieldModifier" type="f:fieldModifier"/>
-	<xs:complexType name="fieldModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:protected"/>
-			<xs:element ref="f:private"/>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:final"/>
-			<xs:element ref="f:transient"/>
-			<xs:element ref="f:volatile"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="variableDeclaratorList" type="f:variableDeclaratorList"/>
-	<xs:complexType name="variableDeclaratorList">
-		<xs:sequence>
-			<xs:element ref="f:variableDeclarator"/>
-			<xs:sequence minOccurs="0">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:variableDeclarator"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="variableDeclarator" type="f:variableDeclarator"/>
-	<xs:complexType name="variableDeclarator">
-		<xs:sequence>
-			<xs:element ref="f:variableDeclaratorId"/>
-			<xs:sequence minOccurs="0">
-				<xs:element ref="f:equals"/>
-				<xs:element ref="f:variableInitializer"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="variableDeclaratorId" type="f:variableDeclaratorId"/>
-	<xs:complexType name="variableDeclaratorId">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:dims" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="variableInitializer" type="f:variableInitializer"/>
-	<xs:complexType name="variableInitializer">
-		<xs:choice>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:arrayInitializer"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="unannType" type="f:unannType"/>
-	<xs:complexType name="unannType">
-		<xs:choice>
-			<xs:element ref="f:unannPrimitiveType"/>
-			<xs:element ref="f:unannReferenceType"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="unannPrimitiveType" type="f:unannPrimitiveType"/>
-	<xs:complexType name="unannPrimitiveType">
-		<xs:choice>
-			<xs:element ref="f:numericType"/>
-			<xs:element ref="f:boolean"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="unannReferenceType" type="f:unannReferenceType"/>
-	<xs:complexType name="unannReferenceType">
-		<xs:choice>
-			<xs:element ref="f:unannClassOrInterfaceType"/>
-			<xs:element ref="f:unannTypeVariable"/>
-			<xs:element ref="f:unannArrayType"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="unannClassOrInterfaceType" type="f:unannClassOrInterfaceType"/>
-	<xs:complexType name="unannClassOrInterfaceType">
-		<xs:choice>
-			<xs:element ref="f:unannClassType"/>
-			<xs:element ref="f:unannInterfaceType"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="unannClassType" type="f:unannClassType"/>
-	<xs:complexType name="unannClassType">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:unannClassOrInterfaceType"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-
-	<xs:element name="unannInterfaceType" type="f:unannInterfaceType"/>
-	<xs:complexType name="unannInterfaceType">
-		<xs:sequence>
-			<xs:element ref="f:unannClassType"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="unannTypeVariable" type="f:unannTypeVariable"/>
-	<xs:complexType name="unannTypeVariable">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="unannArrayType" type="f:unannArrayType"/>
-	<xs:complexType name="unannArrayType">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:unannPrimitiveType"/>
-				<xs:element ref="f:dims"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:unannClassOrInterfaceType"/>
-				<xs:element ref="f:dims"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:unannTypeVariable"/>
-				<xs:element ref="f:dims"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="methodDeclaration" type="f:methodDeclaration"/>
-	<xs:complexType name="methodDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:methodModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:methodHeader"/>
-			<xs:element ref="f:methodBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="methodModifier" type="f:methodModifier"/>
-	<xs:complexType name="methodModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:protected"/>
-			<xs:element ref="f:private"/>
-			<xs:element ref="f:abstract"/>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:final"/>
-			<xs:element ref="f:synchronized"/>
-			<xs:element ref="f:native"/>
-			<xs:element ref="f:strictfp"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="methodHeader" type="f:methodHeader"/>
-	<xs:complexType name="methodHeader">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:result"/>
-				<xs:element ref="f:methodDeclarator"/>
-				<xs:element ref="f:throws" minOccurs="0"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:typeParameters"/>
-				<xs:element ref="f:result"/>
-				<xs:element ref="f:methodDeclarator"/>
-				<xs:element ref="f:throws" minOccurs="0"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="result" type="f:result"/>
-	<xs:complexType name="result">
-		<xs:choice>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:void"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="methodDeclarator" type="f:methodDeclarator"/>
-	<xs:complexType name="methodDeclarator">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:formalParameterList" minOccurs="0"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:dims" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="formalParameterList" type="f:formalParameterList"/>
-	<xs:complexType name="formalParameterList">
-		<xs:choice>
-			<xs:element ref="f:receiverParameter"/>
-			<xs:sequence>
-				<xs:element ref="f:formalParameters"/>
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:lastFormalParameter"/>
-			</xs:sequence>
-			<xs:element ref="f:lastFormalParameter"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="formalParameters" type="f:formalParameters"/>
-	<xs:complexType name="formalParameters">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:formalParameter"/>
-				<xs:sequence minOccurs="0" maxOccurs="unbounded">
-					<xs:element ref="f:comma"/>
-					<xs:element ref="f:formalParameter"/>
-				</xs:sequence>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:receiverParameter"/>
-				<xs:sequence minOccurs="0" maxOccurs="unbounded">
-					<xs:element ref="f:comma"/>
-					<xs:element ref="f:formalParameter"/>
-				</xs:sequence>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="formalParameter" type="f:formalParameter"/>
-	<xs:complexType name="formalParameter">
-		<xs:sequence>
-			<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorId"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="variableModifier" type="f:variableModifier"/>
-	<xs:complexType name="variableModifier">
-		<xs:choice>
-			<xs:element ref="f:final"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="lastFormalParameter" type="f:lastFormalParameter"/>
-	<xs:complexType name="lastFormalParameter">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:unannType"/>
-				<xs:element ref="f:ellipsis"/>
-				<xs:element ref="f:variableDeclaratorId"/>
-			</xs:sequence>
-			<xs:element ref="f:formalParameter"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="receiverParameter" type="f:receiverParameter"/>
-	<xs:complexType name="receiverParameter">
-		<xs:sequence>
-			<xs:element ref="f:unannType"/>
-			<xs:sequence minOccurs="0">
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:dot"/>
-			</xs:sequence>
-			<xs:element ref="f:this"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="throws" type="f:throws"/>
-	<xs:complexType name="throws">
-		<xs:sequence>
-			<xs:element ref="f:throws"/>
-			<xs:element ref="f:exceptionTypeList"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="exceptionTypeList" type="f:exceptionTypeList"/>
-	<xs:complexType name="exceptionTypeList">
-		<xs:sequence>
-			<xs:element ref="f:exceptionType"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:exceptionType"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="exceptionType" type="f:exceptionType"/>
-	<xs:complexType name="exceptionType">
-		<xs:choice>
-			<xs:element ref="f:classType"/>
-			<xs:element ref="f:typeVariable"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="methodBody" type="f:methodBody"/>
-	<xs:complexType name="methodBody">
-		<xs:sequence>
-			<xs:element ref="f:block"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="constructorDeclaration" type="f:constructorDeclaration"/>
-	<xs:complexType name="constructorDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:constructorModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:constructorDeclarator"/>
-			<xs:element ref="f:throws" minOccurs="0"/>
-			<xs:element ref="f:constructorBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="constructorModifier" type="f:constructorModifier"/>
-	<xs:complexType name="constructorModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:protected"/>
-			<xs:element ref="f:private"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="constructorDeclarator" type="f:constructorDeclarator"/>
-	<xs:complexType name="constructorDeclarator">
-		<xs:sequence>
-			<xs:element ref="f:constructorModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:constructorDeclarator"/>
-			<xs:element ref="f:throws" minOccurs="0"/>
-			<xs:element ref="f:constructorBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<!--	<xs:element name="constructorModifier" type="f:constructorModifier"/>-->
-	<!--	<xs:complexType name="constructorModifier">-->
-	<!--		<xs:choice>-->
-	<!--			<xs:element ref="f:public"/>-->
-	<!--			<xs:element ref="f:protected"/>-->
-	<!--			<xs:element ref="f:private"/>-->
-	<!--		</xs:choice>-->
-	<!--	</xs:complexType>-->
-
-
-	<!--	<xs:element name="constructorDeclarator" type="f:constructorDeclarator"/>-->
-	<!--	<xs:complexType name="constructorDeclarator">-->
-	<!--		<xs:sequence>-->
-	<!--			<xs:element ref="f:constructorModifier"/>-->
-	<!--			<xs:element ref="f:constructorDeclarator"/>-->
-	<!--			<xs:element ref="f:throws" minOccurs="0"/>-->
-	<!--			<xs:element ref="f:constructorBody"/>-->
-	<!--		</xs:sequence>-->
-	<!--	</xs:complexType>-->
-
-	<xs:element name="simpleTypeName" type="f:simpleTypeName"/>
-	<xs:complexType name="simpleTypeName">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-		</xs:sequence>
-	</xs:complexType>
-
-
-	<xs:element name="constructorBody" type="f:constructorBody"/>
-	<xs:complexType name="constructorBody">
-		<xs:sequence>
-			<xs:element ref="f:explicitConstructorInvocation" minOccurs="0"/>
-			<xs:element ref="f:blockStatements" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="explicitConstructorInvocation" type="f:explicitConstructorInvocation"/>
-	<xs:complexType name="explicitConstructorInvocation">
-		<xs:choice>
-
-			<xs:sequence>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
+    <xs:include schemaLocation="lexical.xsd"/>
+    <xs:include schemaLocation="keywords.xsd"/>
+    <xs:include schemaLocation="primitive-datatype.xsd"/>
+    <xs:include schemaLocation="modifiers.xsd"/>
+
+
+    <xs:element name="compilationUnit" type="f:compilationUnit"/>
+    <xs:complexType name="compilationUnit">
+        <xs:sequence>
+            <xs:element ref="f:packageDeclaration" minOccurs="0"/>
+            <xs:element ref="f:importDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:typeDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="packageDeclaration" type="f:packageDeclaration"/>
+    <xs:complexType name="packageDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:package"/>
+            <xs:element ref="f:qualifiedIdentifier"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="importDeclaration" type="f:importDeclaration"/>
+    <xs:complexType name="importDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:import"/>
+            <xs:element ref="f:static" minOccurs="0"/>
+            <xs:element ref="f:qualifiedIdentifier"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:star"/>
+            </xs:sequence>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="typeDeclaration" type="f:typeDeclaration"/>
+    <xs:complexType name="typeDeclaration">
+        <xs:choice>
+            <xs:element ref="f:classDeclaration"/>
+            <xs:element ref="f:interfaceDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classDeclaration" type="f:classDeclaration"/>
+    <xs:complexType name="classDeclaration">
+        <xs:choice>
+            <xs:element ref="f:normalClassDeclaration"/>
+            <xs:element ref="f:enumDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:element name="normalClassDeclaration" type="f:normalClassDeclaration"/>
+    <xs:complexType name="normalClassDeclaration">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:classModifier" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:class"/>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:typeParameters" minOccurs="0"/>
+                <xs:element ref="f:superClass" minOccurs="0"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:superInterfaces"/>
+                <xs:element ref="f:classBody"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classModifier" type="f:classModifier"/>
+    <xs:complexType name="classModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:protected"/>
+            <xs:element ref="f:private"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:abstract"/>
+            <xs:element ref="f:final"/>
+            <xs:element ref="f:strictfp"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="typeParameters" type="f:typeParameters"/>
+    <xs:complexType name="typeParameters">
+        <xs:sequence>
+            <xs:element ref="f:lessThan"/>
+            <xs:element ref="f:typeParameterList"/>
+            <xs:element ref="f:greaterThan"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="typeParameterList" type="f:typeParameterList"/>
+    <xs:complexType name="typeParameterList">
+        <xs:sequence>
+            <xs:element ref="f:typeParameter"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:typeParameter"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="typeParameter" type="f:typeParameter"/>
+    <xs:complexType name="typeParameter">
+        <xs:sequence>
+
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:typeBound" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="typeBound" type="f:typeBound"/>
+    <xs:complexType name="typeBound">
+        <xs:sequence>
+            <xs:element ref="f:extends"/>
+            <xs:element ref="f:classType"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:ampersand"/>
+                <xs:element ref="f:interfaceType"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="superClass" type="f:superClass"/>
+    <xs:complexType name="superClass">
+        <xs:sequence>
+            <xs:element ref="f:extends"/>
+            <xs:choice>
+                <xs:element ref="f:typeVariable"/>
+                <xs:element ref="f:classOrInterfaceType"/>
+                <xs:element ref="f:additionalBound" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="additionalBound" type="f:additionalBound"/>
+    <xs:complexType name="additionalBound">
+        <xs:sequence>
+            <xs:element ref="f:ampersand"/>
+            <xs:element ref="f:interfaceType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="interfaceTypeList" type="f:interfaceTypeList"/>
+    <xs:complexType name="interfaceTypeList">
+        <xs:sequence>
+            <xs:element ref="f:interfaceType"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:interfaceType"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="classBody" type="f:classBody"/>
+    <xs:complexType name="classBody">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:classBodyDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="classBodyDeclaration" type="f:classBodyDeclaration"/>
+    <xs:complexType name="classBodyDeclaration">
+        <xs:choice>
+            <xs:element ref="f:classMemberDeclaration"/>
+            <xs:element ref="f:constructorDeclaration"/>
+            <xs:element ref="f:staticInitializer"/>
+            <xs:element ref="f:instanceInitializer"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="staticInitializer" type="f:staticInitializer"/>
+    <xs:complexType name="staticInitializer">
+        <xs:sequence>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:block"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="instanceInitializer" type="f:instanceInitializer"/>
+    <xs:complexType name="instanceInitializer">
+        <xs:sequence>
+            <xs:element ref="f:block"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="classMemberDeclaration" type="f:classMemberDeclaration"/>
+    <xs:complexType name="classMemberDeclaration">
+        <xs:choice>
+            <xs:element ref="f:fieldDeclaration"/>
+            <xs:element ref="f:methodDeclaration"/>
+            <xs:element ref="f:classDeclaration"/>
+            <xs:element ref="f:interfaceDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="fieldDeclaration" type="f:fieldDeclaration"/>
+    <xs:complexType name="fieldDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:fieldModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="fieldModifier" type="f:fieldModifier"/>
+    <xs:complexType name="fieldModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:protected"/>
+            <xs:element ref="f:private"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:final"/>
+            <xs:element ref="f:transient"/>
+            <xs:element ref="f:volatile"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="variableDeclaratorList" type="f:variableDeclaratorList"/>
+    <xs:complexType name="variableDeclaratorList">
+        <xs:sequence>
+            <xs:element ref="f:variableDeclarator"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:variableDeclarator"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="variableDeclarator" type="f:variableDeclarator"/>
+    <xs:complexType name="variableDeclarator">
+        <xs:sequence>
+            <xs:element ref="f:variableDeclaratorId"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="f:equals"/>
+                <xs:element ref="f:variableInitializer"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="variableDeclaratorId" type="f:variableDeclaratorId"/>
+    <xs:complexType name="variableDeclaratorId">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:dims" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="variableInitializer" type="f:variableInitializer"/>
+    <xs:complexType name="variableInitializer">
+        <xs:choice>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:arrayInitializer"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="unannType" type="f:unannType"/>
+    <xs:complexType name="unannType">
+        <xs:choice>
+            <xs:element ref="f:unannPrimitiveType"/>
+            <xs:element ref="f:unannReferenceType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="unannPrimitiveType" type="f:unannPrimitiveType"/>
+    <xs:complexType name="unannPrimitiveType">
+        <xs:choice>
+            <xs:element ref="f:numericType"/>
+            <xs:element ref="f:boolean"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="unannReferenceType" type="f:unannReferenceType"/>
+    <xs:complexType name="unannReferenceType">
+        <xs:choice>
+            <xs:element ref="f:unannClassOrInterfaceType"/>
+            <xs:element ref="f:unannTypeVariable"/>
+            <xs:element ref="f:unannArrayType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="unannClassOrInterfaceType" type="f:unannClassOrInterfaceType"/>
+    <xs:complexType name="unannClassOrInterfaceType">
+        <xs:choice>
+            <xs:element ref="f:unannClassType"/>
+            <xs:element ref="f:unannInterfaceType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="unannClassType" type="f:unannClassType"/>
+    <xs:complexType name="unannClassType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:unannClassOrInterfaceType"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:element name="unannInterfaceType" type="f:unannInterfaceType"/>
+    <xs:complexType name="unannInterfaceType">
+        <xs:sequence>
+            <xs:element ref="f:unannClassType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="unannTypeVariable" type="f:unannTypeVariable"/>
+    <xs:complexType name="unannTypeVariable">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="unannArrayType" type="f:unannArrayType"/>
+    <xs:complexType name="unannArrayType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:unannPrimitiveType"/>
+                <xs:element ref="f:dims"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:unannClassOrInterfaceType"/>
+                <xs:element ref="f:dims"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:unannTypeVariable"/>
+                <xs:element ref="f:dims"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="methodDeclaration" type="f:methodDeclaration"/>
+    <xs:complexType name="methodDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:methodModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:methodHeader"/>
+            <xs:element ref="f:methodBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="methodModifier" type="f:methodModifier"/>
+    <xs:complexType name="methodModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:protected"/>
+            <xs:element ref="f:private"/>
+            <xs:element ref="f:abstract"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:final"/>
+            <xs:element ref="f:synchronized"/>
+            <xs:element ref="f:native"/>
+            <xs:element ref="f:strictfp"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="methodHeader" type="f:methodHeader"/>
+    <xs:complexType name="methodHeader">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:result"/>
+                <xs:element ref="f:methodDeclarator"/>
+                <xs:element ref="f:throws" minOccurs="0"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:typeParameters"/>
+                <xs:element ref="f:result"/>
+                <xs:element ref="f:methodDeclarator"/>
+                <xs:element ref="f:throws" minOccurs="0"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="result" type="f:result"/>
+    <xs:complexType name="result">
+        <xs:choice>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:void"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="methodDeclarator" type="f:methodDeclarator"/>
+    <xs:complexType name="methodDeclarator">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:formalParameterList" minOccurs="0"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:dims" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="formalParameterList" type="f:formalParameterList"/>
+    <xs:complexType name="formalParameterList">
+        <xs:choice>
+            <xs:element ref="f:receiverParameter"/>
+            <xs:sequence>
+                <xs:element ref="f:formalParameters"/>
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:lastFormalParameter"/>
+            </xs:sequence>
+            <xs:element ref="f:lastFormalParameter"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="formalParameters" type="f:formalParameters"/>
+    <xs:complexType name="formalParameters">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:formalParameter"/>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="f:comma"/>
+                    <xs:element ref="f:formalParameter"/>
+                </xs:sequence>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:receiverParameter"/>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="f:comma"/>
+                    <xs:element ref="f:formalParameter"/>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="formalParameter" type="f:formalParameter"/>
+    <xs:complexType name="formalParameter">
+        <xs:sequence>
+            <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="variableModifier" type="f:variableModifier"/>
+    <xs:complexType name="variableModifier">
+        <xs:choice>
+            <xs:element ref="f:final"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="lastFormalParameter" type="f:lastFormalParameter"/>
+    <xs:complexType name="lastFormalParameter">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:unannType"/>
+                <xs:element ref="f:ellipsis"/>
+                <xs:element ref="f:variableDeclaratorId"/>
+            </xs:sequence>
+            <xs:element ref="f:formalParameter"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="receiverParameter" type="f:receiverParameter"/>
+    <xs:complexType name="receiverParameter">
+        <xs:sequence>
+            <xs:element ref="f:unannType"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:dot"/>
+            </xs:sequence>
+            <xs:element ref="f:this"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="throws" type="f:throws"/>
+    <xs:complexType name="throws">
+        <xs:sequence>
+            <xs:element ref="f:throws"/>
+            <xs:element ref="f:exceptionTypeList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="exceptionTypeList" type="f:exceptionTypeList"/>
+    <xs:complexType name="exceptionTypeList">
+        <xs:sequence>
+            <xs:element ref="f:exceptionType"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:exceptionType"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="exceptionType" type="f:exceptionType"/>
+    <xs:complexType name="exceptionType">
+        <xs:choice>
+            <xs:element ref="f:classType"/>
+            <xs:element ref="f:typeVariable"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="methodBody" type="f:methodBody"/>
+    <xs:complexType name="methodBody">
+        <xs:sequence>
+            <xs:element ref="f:block"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="constructorDeclaration" type="f:constructorDeclaration"/>
+    <xs:complexType name="constructorDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:constructorModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:constructorDeclarator"/>
+            <xs:element ref="f:throws" minOccurs="0"/>
+            <xs:element ref="f:constructorBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="constructorModifier" type="f:constructorModifier"/>
+    <xs:complexType name="constructorModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:protected"/>
+            <xs:element ref="f:private"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="constructorDeclarator" type="f:constructorDeclarator"/>
+    <xs:complexType name="constructorDeclarator">
+        <xs:sequence>
+            <xs:element ref="f:constructorModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:constructorDeclarator"/>
+            <xs:element ref="f:throws" minOccurs="0"/>
+            <xs:element ref="f:constructorBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--	<xs:element name="constructorModifier" type="f:constructorModifier"/>-->
+    <!--	<xs:complexType name="constructorModifier">-->
+    <!--		<xs:choice>-->
+    <!--			<xs:element ref="f:public"/>-->
+    <!--			<xs:element ref="f:protected"/>-->
+    <!--			<xs:element ref="f:private"/>-->
+    <!--		</xs:choice>-->
+    <!--	</xs:complexType>-->
+
+
+    <!--	<xs:element name="constructorDeclarator" type="f:constructorDeclarator"/>-->
+    <!--	<xs:complexType name="constructorDeclarator">-->
+    <!--		<xs:sequence>-->
+    <!--			<xs:element ref="f:constructorModifier"/>-->
+    <!--			<xs:element ref="f:constructorDeclarator"/>-->
+    <!--			<xs:element ref="f:throws" minOccurs="0"/>-->
+    <!--			<xs:element ref="f:constructorBody"/>-->
+    <!--		</xs:sequence>-->
+    <!--	</xs:complexType>-->
+
+    <xs:element name="simpleTypeName" type="f:simpleTypeName"/>
+    <xs:complexType name="simpleTypeName">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="constructorBody" type="f:constructorBody"/>
+    <xs:complexType name="constructorBody">
+        <xs:sequence>
+            <xs:element ref="f:explicitConstructorInvocation" minOccurs="0"/>
+            <xs:element ref="f:blockStatements" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="explicitConstructorInvocation" type="f:explicitConstructorInvocation"/>
+    <xs:complexType name="explicitConstructorInvocation">
+        <xs:choice>
+
+            <xs:sequence>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:choice>
+                    <xs:element ref="f:this"/>
+                    <xs:element ref="f:super"/>
+                </xs:choice>
+                <xs:element ref="f:this"/>
+                <xs:element ref="f:argumentList"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="f:expressionName"/>
+                    <xs:element ref="f:primary"/>
+                </xs:choice>
+
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:super"/>
+                <xs:element ref="f:argumentList" minOccurs="0"/>
+            </xs:sequence>
+
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="typeArguments" type="f:typeArguments"/>
+    <xs:complexType name="typeArguments">
+        <xs:sequence>
+            <xs:element ref="f:lessThan"/>
+            <xs:element ref="f:typeArgumentList"/>
+            <xs:element ref="f:greaterThan"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="typeArgumentList" type="f:typeArgumentList"/>
+    <xs:complexType name="typeArgumentList">
+        <xs:sequence>
+            <xs:element ref="f:typeArgument"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:typeArgument"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enumDeclaration" type="f:enumDeclaration"/>
+    <xs:complexType name="enumDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:classModifier"/>
+            <xs:element ref="f:enum"/>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:superInterfaces" minOccurs="0"/>
+            <xs:element ref="f:enumBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="superInterfaces" type="f:superInterfaces"/>
+    <xs:complexType name="superInterfaces">
+        <xs:sequence>
+            <xs:element ref="f:implements"/>
+            <xs:element ref="f:interfaceTypeList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enumBody" type="f:enumBody"/>
+    <xs:complexType name="enumBody">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:enumConstantList" minOccurs="0"/>
+            <xs:element ref="f:comma" minOccurs="0"/>
+            <xs:element ref="f:enumBodyDeclarations" minOccurs="0"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enumConstantList" type="f:enumConstantList"/>
+    <xs:complexType name="enumConstantList">
+        <xs:sequence>
+            <xs:element ref="f:enumConstant"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:enumConstant"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enumConstant" type="f:enumConstant"/>
+    <xs:complexType name="enumConstant">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="f:leftParen"/>
+                <xs:element ref="f:argumentList" minOccurs="0"/>
+                <xs:element ref="f:rightParen"/>
+            </xs:sequence>
+            <xs:element ref="f:classBody" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enumBodyDeclarations" type="f:enumBodyDeclarations"/>
+    <xs:complexType name="enumBodyDeclarations">
+        <xs:sequence>
+            <xs:element ref="f:classBodyDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="interfaceDeclaration" type="f:interfaceDeclaration"/>
+    <xs:complexType name="interfaceDeclaration">
+        <xs:choice>
+            <xs:element ref="f:normalInterfaceDeclaration"/>
+            <xs:element ref="f:annotationTypeDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="normalInterfaceDeclaration" type="f:normalInterfaceDeclaration"/>
+    <xs:complexType name="normalInterfaceDeclaration">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:interface"/>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:typeParameters" minOccurs="0"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:extendsInterfaces" minOccurs="0"/>
+                <xs:element ref="f:interfaceBody"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="interfaceModifier" type="f:interfaceModifier"/>
+    <xs:complexType name="interfaceModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:protected"/>
+            <xs:element ref="f:private"/>
+            <xs:element ref="f:abstract"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:strictfp"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="extendsInterfaces" type="f:extendsInterfaces"/>
+    <xs:complexType name="extendsInterfaces">
+        <xs:sequence>
+            <xs:element ref="f:extends"/>
+            <xs:element ref="f:interfaceTypeList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="interfaceBody" type="f:interfaceBody"/>
+    <xs:complexType name="interfaceBody">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:interfaceMemberDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="interfaceMemberDeclaration" type="f:interfaceMemberDeclaration"/>
+    <xs:complexType name="interfaceMemberDeclaration">
+        <xs:choice>
+            <xs:element ref="f:constantDeclaration"/>
+            <xs:element ref="f:interfaceMethodDeclaration"/>
+            <xs:element ref="f:classDeclaration"/>
+            <xs:element ref="f:interfaceDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="constantDeclaration" type="f:constantDeclaration"/>
+    <xs:complexType name="constantDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:constantModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorList"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="constantModifier" type="f:constantModifier"/>
+    <xs:complexType name="constantModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:final"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="interfaceMethodDeclaration" type="f:interfaceMethodDeclaration"/>
+    <xs:complexType name="interfaceMethodDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:interfaceMethodModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:methodHeader"/>
+            <xs:element ref="f:methodBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="interfaceMethodModifier" type="f:interfaceMethodModifier"/>
+    <xs:complexType name="interfaceMethodModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:abstract"/>
+            <xs:element ref="f:default"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:strictfp"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="annotationTypeDeclaration" type="f:annotationTypeDeclaration"/>
+    <xs:complexType name="annotationTypeDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:at"/>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:annotationTypeBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="annotationTypeBody" type="f:annotationTypeBody"/>
+    <xs:complexType name="annotationTypeBody">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:annotationTypeMemberDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="annotationTypeMemberDeclaration" type="f:annotationTypeMemberDeclaration"/>
+    <xs:complexType name="annotationTypeMemberDeclaration">
+        <xs:choice>
+            <xs:element ref="f:annotationTypeElementDeclaration"/>
+            <xs:element ref="f:constantDeclaration"/>
+            <xs:element ref="f:classDeclaration"/>
+            <xs:element ref="f:interfaceDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="annotationTypeElementDeclaration" type="f:annotationTypeElementDeclaration"/>
+    <xs:complexType name="annotationTypeElementDeclaration">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:annotationTypeElementModifier" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:unannType"/>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:leftParen"/>
+                <xs:element ref="f:rightParen"/>
+                <xs:element ref="f:dims" minOccurs="0"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:defaultValue" minOccurs="0"/>
+                <xs:element ref="f:semicolon"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="annotationTypeElementModifier" type="f:annotationTypeElementModifier"/>
+    <xs:complexType name="annotationTypeElementModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:abstract"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:element name="defaultValue" type="f:defaultValue"/>
+    <xs:complexType name="defaultValue">
+        <xs:sequence>
+            <xs:element ref="f:default"/>
+            <xs:element ref="f:elementValue"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="elementValuePairList" type="f:elementValuePairList"/>
+    <xs:complexType name="elementValuePairList">
+        <xs:sequence>
+            <xs:element ref="f:elementValuePair"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:elementValuePair"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="elementValuePair" type="f:elementValuePair"/>
+    <xs:complexType name="elementValuePair">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:equals"/>
+            <xs:element ref="f:elementValue"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="elementValue" type="f:elementValue"/>
+    <xs:complexType name="elementValue">
+        <xs:choice>
+            <xs:element ref="f:conditionalExpression"/>
+            <xs:element ref="f:elementValueArrayInitializer"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="elementValueArrayInitializer" type="f:elementValueArrayInitializer"/>
+    <xs:complexType name="elementValueArrayInitializer">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:elementValueList" minOccurs="0"/>
+            <xs:element ref="f:comma" minOccurs="0"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="elementValueList" type="f:elementValueList"/>
+    <xs:complexType name="elementValueList">
+        <xs:sequence>
+            <xs:element ref="f:elementValue"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:elementValue"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="arrayInitializer" type="f:arrayInitializer"/>
+    <xs:complexType name="arrayInitializer">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:variableInitializerList" minOccurs="0"/>
+            <xs:element ref="f:comma" minOccurs="0"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="variableInitializerList" type="f:variableInitializerList"/>
+    <xs:complexType name="variableInitializerList">
+        <xs:sequence>
+            <xs:element ref="f:variableInitializer"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:variableInitializer"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="block" type="f:block"/>
+    <xs:complexType name="block">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:blockStatements" minOccurs="0"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="blockStatements" type="f:blockStatements"/>
+    <xs:complexType name="blockStatements">
+        <xs:sequence>
+            <xs:element ref="f:blockStatement" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="blockStatement" type="f:blockStatement"/>
+    <xs:complexType name="blockStatement">
+        <xs:choice>
+            <xs:element ref="f:localVariableDeclarationStatement"/>
+            <xs:element ref="f:classDeclaration"/>
+            <xs:element ref="f:statement"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="localVariableDeclarationStatement" type="f:localVariableDeclarationStatement"/>
+    <xs:complexType name="localVariableDeclarationStatement">
+        <xs:sequence>
+            <xs:element ref="f:localVariableDeclaration"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="localVariableDeclaration" type="f:localVariableDeclaration"/>
+    <xs:complexType name="localVariableDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="statement" type="f:statement"/>
+    <xs:complexType name="statement">
+        <xs:choice>
+            <xs:element ref="f:statementWithoutTrailingSubstatement"/>
+            <xs:element ref="f:labeledStatement"/>
+            <xs:element ref="f:ifThenStatement"/>
+            <xs:element ref="f:ifThenElseStatement"/>
+            <xs:element ref="f:whileStatement"/>
+            <xs:element ref="f:forStatement"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="statementNoShortIf" type="f:statementNoShortIf"/>
+    <xs:complexType name="statementNoShortIf">
+        <xs:choice>
+            <xs:element ref="f:statementWithoutTrailingSubstatement"/>
+            <xs:element ref="f:labeledStatementNoShortIf"/>
+            <xs:element ref="f:ifThenElseStatementNoShortIf"/>
+            <xs:element ref="f:whileStatementNoShortIf"/>
+            <xs:element ref="f:forStatementNoShortIf"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="statementWithoutTrailingSubstatement" type="f:statementWithoutTrailingSubstatement"/>
+    <xs:complexType name="statementWithoutTrailingSubstatement">
+        <xs:choice>
+            <xs:element ref="f:block"/>
+            <xs:element ref="f:emptyStatement"/>
+            <xs:element ref="f:expressionStatement"/>
+            <xs:element ref="f:assertStatement"/>
+            <xs:element ref="f:switchStatement"/>
+            <xs:element ref="f:doStatement"/>
+            <xs:element ref="f:breakStatement"/>
+            <xs:element ref="f:continueStatement"/>
+            <xs:element ref="f:returnStatement"/>
+            <xs:element ref="f:synchronizedStatement"/>
+            <xs:element ref="f:throwStatement"/>
+            <xs:element ref="f:tryStatement"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="assertStatement" type="f:assertStatement"/>
+    <xs:complexType name="assertStatement">
+        <xs:sequence>
+            <xs:element ref="f:assert"/>
+            <xs:element ref="f:expression"/>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="f:semicolon"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element ref="f:colon"/>
+                    <xs:element ref="f:expression"/>
+                    <xs:element ref="f:semicolon"/>
+                </xs:sequence>
+            </xs:choice>
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:element name="emptyStatement" type="f:emptyStatement"/>
+    <xs:complexType name="emptyStatement">
+        <xs:sequence>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="labeledStatement" type="f:labeledStatement"/>
+    <xs:complexType name="labeledStatement">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:colon"/>
+            <xs:element ref="f:statement"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="labeledStatementNoShortIf" type="f:labeledStatementNoShortIf"/>
+    <xs:complexType name="labeledStatementNoShortIf">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:colon"/>
+            <xs:element ref="f:statementNoShortIf"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="expressionStatement" type="f:expressionStatement"/>
+    <xs:complexType name="expressionStatement">
+        <xs:sequence>
+            <xs:element ref="f:statementExpression"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="statementExpression" type="f:statementExpression"/>
+    <xs:complexType name="statementExpression">
+        <xs:choice>
+            <xs:element ref="f:assignment"/>
+            <xs:element ref="f:preIncrementExpression"/>
+            <xs:element ref="f:preDecrementExpression"/>
+            <xs:element ref="f:postIncrementExpression"/>
+            <xs:element ref="f:postDecrementExpression"/>
+            <xs:element ref="f:methodInvocation"/>
+            <xs:element ref="f:classInstanceCreationExpression"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="ifThenStatement" type="f:ifThenStatement"/>
+    <xs:complexType name="ifThenStatement">
+        <xs:sequence>
+            <xs:element ref="f:if"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statement"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ifThenElseStatement" type="f:ifThenElseStatement"/>
+    <xs:complexType name="ifThenElseStatement">
+        <xs:sequence>
+            <xs:element ref="f:if"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statementNoShortIf"/>
+            <xs:element ref="f:else"/>
+            <xs:element ref="f:statement"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ifThenElseStatementNoShortIf" type="f:ifThenElseStatementNoShortIf"/>
+    <xs:complexType name="ifThenElseStatementNoShortIf">
+        <xs:sequence>
+            <xs:element ref="f:if"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statementNoShortIf"/>
+            <xs:element ref="f:else"/>
+            <xs:element ref="f:statementNoShortIf"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="switchStatement" type="f:switchStatement"/>
+    <xs:complexType name="switchStatement">
+        <xs:sequence>
+            <xs:element ref="f:switch"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:switchBlock"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="switchBlock" type="f:switchBlock"/>
+    <xs:complexType name="switchBlock">
+        <xs:sequence>
+            <xs:element ref="f:leftBrace"/>
+            <xs:element ref="f:switchBlockStatementGroup" minOccurs="0"/>
+            <xs:element ref="f:switchLabel" minOccurs="0"/>
+            <xs:element ref="f:rightBrace"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="switchBlockStatementGroup" type="f:switchBlockStatementGroup"/>
+    <xs:complexType name="switchBlockStatementGroup">
+        <xs:sequence>
+            <xs:element ref="f:switchLabels"/>
+            <xs:element ref="f:blockStatements"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="switchLabels" type="f:switchLabels"/>
+    <xs:complexType name="switchLabels">
+        <xs:sequence>
+            <xs:element ref="f:switchLabel"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:switchLabel"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="switchLabel" type="f:switchLabel"/>
+    <xs:complexType name="switchLabel">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:case"/>
+
+                <xs:choice>
+
+                    <xs:sequence>
+                        <xs:element ref="f:constantExpression"/>
+                        <xs:element ref="f:colon"/>
+                    </xs:sequence>
+
+                    <xs:sequence>
+                        <xs:element ref="f:enumConstantName"/>
+                        <xs:element ref="f:colon"/>
+                    </xs:sequence>
+
+                </xs:choice>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:default"/>
+                <xs:element ref="f:colon"/>
+            </xs:sequence>
+
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="enumConstantName" type="f:enumConstantName"/>
+    <xs:complexType name="enumConstantName">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="whileStatement" type="f:whileStatement"/>
+    <xs:complexType name="whileStatement">
+        <xs:sequence>
+            <xs:element ref="f:while"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statement"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="whileStatementNoShortIf" type="f:whileStatementNoShortIf"/>
+    <xs:complexType name="whileStatementNoShortIf">
+        <xs:sequence>
+            <xs:element ref="f:while"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statementNoShortIf"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="doStatement" type="f:doStatement"/>
+    <xs:complexType name="doStatement">
+        <xs:sequence>
+            <xs:element ref="f:do"/>
+            <xs:element ref="f:statement"/>
+            <xs:element ref="f:while"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="forStatement" type="f:forStatement"/>
+    <xs:complexType name="forStatement">
+        <xs:choice>
+            <xs:element ref="f:basicForStatement"/>
+            <xs:element ref="f:enhancedForStatement"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="forStatementNoShortIf" type="f:forStatementNoShortIf"/>
+    <xs:complexType name="forStatementNoShortIf">
+        <xs:choice>
+            <xs:element ref="f:basicForStatementNoShortIf"/>
+            <xs:element ref="f:enhancedForStatementNoShortIf"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="basicForStatement" type="f:basicForStatement"/>
+    <xs:complexType name="basicForStatement">
+        <xs:sequence>
+            <xs:element ref="f:for"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:forInit" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+            <xs:element ref="f:expression" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+            <xs:element ref="f:forUpdate" minOccurs="0"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statement"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="basicForStatementNoShortIf" type="f:basicForStatementNoShortIf"/>
+    <xs:complexType name="basicForStatementNoShortIf">
+        <xs:sequence>
+            <xs:element ref="f:for"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:forInit" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+            <xs:element ref="f:expression" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+            <xs:element ref="f:forUpdate" minOccurs="0"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statementNoShortIf"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="forInit" type="f:forInit"/>
+    <xs:complexType name="forInit">
+        <xs:choice>
+            <xs:element ref="f:statementExpressionList"/>
+            <xs:element ref="f:localVariableDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="forUpdate" type="f:forUpdate"/>
+    <xs:complexType name="forUpdate">
+        <xs:sequence>
+            <xs:element ref="f:statementExpressionList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="statementExpressionList" type="f:statementExpressionList"/>
+    <xs:complexType name="statementExpressionList">
+        <xs:sequence>
+            <xs:element ref="f:statementExpression"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:statementExpression"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enhancedForStatement" type="f:enhancedForStatement"/>
+    <xs:complexType name="enhancedForStatement">
+        <xs:sequence>
+            <xs:element ref="f:for"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorId"/>
+            <xs:element ref="f:colon"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statement"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="enhancedForStatementNoShortIf" type="f:enhancedForStatementNoShortIf"/>
+    <xs:complexType name="enhancedForStatementNoShortIf">
+        <xs:sequence>
+            <xs:element ref="f:for"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorId"/>
+            <xs:element ref="f:colon"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:statementNoShortIf"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="breakStatement" type="f:breakStatement"/>
+    <xs:complexType name="breakStatement">
+        <xs:sequence>
+            <xs:element ref="f:break"/>
+            <xs:element ref="f:identifier" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="continueStatement" type="f:continueStatement"/>
+    <xs:complexType name="continueStatement">
+        <xs:sequence>
+            <xs:element ref="f:continue"/>
+            <xs:element ref="f:identifier" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="returnStatement" type="f:returnStatement"/>
+    <xs:complexType name="returnStatement">
+        <xs:sequence>
+            <xs:element ref="f:return"/>
+            <xs:element ref="f:expression" minOccurs="0"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="throwStatement" type="f:throwStatement"/>
+    <xs:complexType name="throwStatement">
+        <xs:sequence>
+            <xs:element ref="f:throw"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:semicolon"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="synchronizedStatement" type="f:synchronizedStatement"/>
+    <xs:complexType name="synchronizedStatement">
+        <xs:sequence>
+            <xs:element ref="f:synchronized"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:block"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="tryStatement" type="f:tryStatement"/>
+    <xs:complexType name="tryStatement">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:try"/>
+                <xs:element ref="f:block"/>
+                <xs:element ref="f:catches" minOccurs="0"/>
+                <xs:element ref="f:finally" minOccurs="0"/>
+            </xs:sequence>
+            <xs:element ref="f:tryWithResourcesStatement"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="catches" type="f:catches"/>
+    <xs:complexType name="catches">
+        <xs:sequence>
+            <xs:element ref="f:catchClause"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:catchClause"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="catchClause" type="f:catchClause"/>
+    <xs:complexType name="catchClause">
+        <xs:sequence>
+            <xs:element ref="f:catch"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:catchFormalParameter"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:block"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="catchFormalParameter" type="f:catchFormalParameter"/>
+    <xs:complexType name="catchFormalParameter">
+        <xs:sequence>
+            <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:catchType"/>
+            <xs:element ref="f:variableDeclaratorId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="catchType" type="f:catchType"/>
+    <xs:complexType name="catchType">
+        <xs:sequence>
+            <xs:element ref="f:unannClassType"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:pipe"/>
+                <xs:element ref="f:unannClassType"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="finally" type="f:finally"/>
+    <xs:complexType name="finally">
+        <xs:sequence>
+            <xs:element ref="f:finally"/>
+            <xs:element ref="f:block"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="tryWithResourcesStatement" type="f:tryWithResourcesStatement"/>
+    <xs:complexType name="tryWithResourcesStatement">
+        <xs:sequence>
+            <xs:element ref="f:try"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:resourceSpecification"/>
+            <xs:element ref="f:rightParen"/>
+            <xs:element ref="f:block"/>
+            <xs:element ref="f:catches" minOccurs="0"/>
+            <xs:element ref="f:finally" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="resourceSpecification" type="f:resourceSpecification"/>
+    <xs:complexType name="resourceSpecification">
+        <xs:sequence>
+            <xs:element ref="f:resourceList"/>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="f:semicolon"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="resourceList" type="f:resourceList"/>
+    <xs:complexType name="resourceList">
+        <xs:sequence>
+            <xs:element ref="f:resource"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:semicolon"/>
+                <xs:element ref="f:resource"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="resource" type="f:resource"/>
+    <xs:complexType name="resource">
+        <xs:sequence>
+            <xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorId"/>
+            <xs:element ref="f:equals"/>
+            <xs:element ref="f:expression"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="primary" type="f:primary"/>
+    <xs:complexType name="primary">
+        <xs:choice>
+            <xs:element ref="f:primaryNoNewArray"/>
+            <xs:element ref="f:arrayCreationExpression"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="primaryNoNewArray" type="f:primaryNoNewArray"/>
+    <xs:complexType name="primaryNoNewArray">
+        <xs:choice>
+            <xs:element ref="f:literal"/>
+            <xs:element ref="f:classLiteral"/>
+            <xs:element ref="f:this"/>
+            <xs:sequence>
+                <xs:element ref="f:typeName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:this"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:leftParen"/>
+                <xs:element ref="f:expression"/>
+                <xs:element ref="f:rightParen"/>
+            </xs:sequence>
+            <xs:element ref="f:classInstanceCreationExpression"/>
+            <xs:element ref="f:fieldAccess"/>
+            <xs:element ref="f:arrayAccess"/>
+            <xs:element ref="f:methodInvocation"/>
+            <xs:element ref="f:methodReference"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classLiteral" type="f:classLiteral"/>
+    <xs:complexType name="classLiteral">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:typeName"/>
+                <xs:element ref="f:squareBrackets" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:class"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:numericType"/>
+                <xs:element ref="f:squareBrackets" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:class"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:boolean"/>
+                <xs:element ref="f:squareBrackets" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:class"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:void"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:class"/>
+            </xs:sequence>
+
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classInstanceCreationExpression" type="f:classInstanceCreationExpression"/>
+    <xs:complexType name="classInstanceCreationExpression">
+        <xs:choice>
+            <xs:element ref="f:unqualifiedClassInstanceCreationExpression"/>
+
+            <xs:sequence>
+                <xs:element ref="f:expressionName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:unqualifiedClassInstanceCreationExpression"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:primary"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:unqualifiedClassInstanceCreationExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="unqualifiedClassInstanceCreationExpression" type="f:unqualifiedClassInstanceCreationExpression"/>
+    <xs:complexType name="unqualifiedClassInstanceCreationExpression">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:new"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:classOrInterfaceTypeToInstantiate"/>
+                <xs:element ref="f:argumentList" minOccurs="0"/>
+            </xs:sequence>
+            <xs:element ref="f:classBody"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classOrInterfaceTypeToInstantiate" type="f:classOrInterfaceTypeToInstantiate"/>
+    <xs:complexType name="classOrInterfaceTypeToInstantiate">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:typeArgumentsOrDiamond"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="typeArgumentsOrDiamond" type="f:typeArgumentsOrDiamond"/>
+    <xs:complexType name="typeArgumentsOrDiamond">
+        <xs:choice>
+            <xs:element ref="f:typeArguments"/>
+            <xs:element ref="f:diamond"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="fieldAccess" type="f:fieldAccess"/>
+    <xs:complexType name="fieldAccess">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:primary"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:super"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:typeName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:super"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="typeName" type="f:typeName"/>
+    <xs:complexType name="typeName">
+        <xs:choice>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence>
+                <xs:element ref="f:packageOrTypeName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="packageOrTypeName" type="f:packageOrTypeName"/>
+    <xs:complexType name="packageOrTypeName">
+        <xs:choice>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence>
+                <xs:element ref="f:packageOrTypeName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="arrayAccess" type="f:arrayAccess"/>
+    <xs:complexType name="arrayAccess">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:expressionName"/>
+                <xs:element ref="f:leftBracket"/>
+                <xs:element ref="f:expression"/>
+                <xs:element ref="f:rightBracket"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:primaryNoNewArray"/>
+                <xs:element ref="f:leftBracket"/>
+                <xs:element ref="f:expression"/>
+                <xs:element ref="f:rightBracket"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="methodInvocation" type="f:methodInvocation"/>
+    <xs:complexType name="methodInvocation">
+        <xs:sequence>
+
+            <!--			<xs:choice>-->
+
+            <!--				<xs:element ref="f:methodName"/>-->
+
+            <!--				<xs:sequence>-->
+
+            <!--					<xs:choice>-->
+            <!--						<xs:sequence>-->
+            <!--							<xs:element ref="f:typeName"/>-->
+            <!--							<xs:sequence minOccurs="0">-->
+            <!--								<xs:element ref="f:dot"/>-->
+            <!--								<xs:element ref="f:super"/>-->
+            <!--							</xs:sequence>-->
+            <!--						</xs:sequence>-->
+
+            <!--						<xs:element ref="f:expressionName"/>-->
+            <!--						<xs:element ref="f:primary"/>-->
+            <!--						<xs:element ref="f:super"/>-->
+
+            <!--					</xs:choice>-->
+
+            <!--					<xs:element ref="f:dot"/>-->
+            <!--					<xs:element ref="f:typeArguments" minOccurs="0"/>-->
+            <!--					<xs:element ref="f:identifier"/>-->
+            <!--				</xs:sequence>-->
+            <!--			</xs:choice>-->
+
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:argumentList" minOccurs="0"/>
+            <xs:element ref="f:rightParen"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="methodName" type="f:methodName"/>
+    <xs:complexType name="methodName">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="argumentList" type="f:argumentList"/>
+    <xs:complexType name="argumentList">
+        <xs:sequence>
+            <xs:element ref="f:expression"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:expression"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="methodReference" type="f:methodReference"/>
+    <xs:complexType name="methodReference">
+        <xs:choice>
+
+            <xs:sequence>
+                <xs:element ref="f:expressionName"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:referenceType"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+
+
+            <xs:sequence>
+                <xs:element ref="f:primary"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:super"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:typeName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:super"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+
+            <xs:sequence>
+                <xs:element ref="f:classType"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:new"/>
+            </xs:sequence>
+
+
+            <xs:sequence>
+                <xs:element ref="f:arrayType"/>
+                <xs:element ref="f:doubleColon"/>
+                <xs:element ref="f:new"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="arrayCreationExpression" type="f:arrayCreationExpression"/>
+    <xs:complexType name="arrayCreationExpression">
+        <xs:sequence>
+            <xs:element ref="f:new"/>
+            <xs:choice>
+
+                <xs:sequence>
+
+                    <xs:element ref="f:primitiveType"/>
+
+                    <xs:choice>
+                        <xs:sequence>
+                            <xs:element ref="f:dimExprs"/>
+                            <xs:element ref="f:dims" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:sequence>
+                            <xs:element ref="f:dims"/>
+                            <xs:element ref="f:arrayInitializer"/>
+                        </xs:sequence>
+                    </xs:choice>
+
+
+                </xs:sequence>
+
+
+                <xs:sequence>
+
+                    <xs:element ref="f:classOrInterfaceType"/>
+
+                    <xs:choice>
+                        <xs:sequence>
+                            <xs:element ref="f:dimExprs"/>
+                            <xs:element ref="f:dims" minOccurs="0"/>
+                        </xs:sequence>
+
+                        <xs:sequence>
+                            <xs:element ref="f:dims"/>
+                            <xs:element ref="f:arrayInitializer"/>
+                        </xs:sequence>
+
+                    </xs:choice>
+
+
+                </xs:sequence>
+
+
+            </xs:choice>
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:element name="dimExprs" type="f:dimExprs"/>
+    <xs:complexType name="dimExprs">
+        <xs:sequence>
+            <xs:element ref="f:dimExpr" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="dimExpr" type="f:dimExpr"/>
+    <xs:complexType name="dimExpr">
+        <xs:sequence>
+            <xs:element ref="f:leftBracket"/>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:rightBracket"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="expression" type="f:expression"/>
+    <xs:complexType name="expression">
+        <xs:choice>
+            <xs:element ref="f:lambdaExpression"/>
+            <xs:element ref="f:assignmentExpression"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="lambdaExpression" type="f:lambdaExpression"/>
+    <xs:complexType name="lambdaExpression">
+        <xs:sequence>
+            <xs:element ref="f:lambdaParameters"/>
+            <xs:element ref="f:rightArrow"/>
+            <xs:element ref="f:lambdaBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="lambdaBody" type="f:lambdaBody"/>
+    <xs:complexType name="lambdaBody">
+        <xs:choice>
+            <xs:element ref="f:expression"/>
+            <xs:element ref="f:block"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="lambdaParameters" type="f:lambdaParameters"/>
+    <xs:complexType name="lambdaParameters">
+        <xs:choice>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence>
+                <xs:element ref="f:leftParen"/>
+
 				<xs:choice>
-					<xs:element ref="f:this"/>
-					<xs:element ref="f:super"/>
-				</xs:choice>
-				<xs:element ref="f:this"/>
-				<xs:element ref="f:argumentList"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:choice>
-					<xs:element ref="f:expressionName"/>
-					<xs:element ref="f:primary"/>
+					<xs:element ref="f:formalParameterList" minOccurs="0"/>
+					<xs:element ref="f:inferredFormalParameterList"/>
 				</xs:choice>
 
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:super"/>
-				<xs:element ref="f:argumentList" minOccurs="0"/>
+                <xs:element ref="f:rightParen"/>
 			</xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="inferredFormalParameterList" type="f:inferredFormalParameterList"/>
+    <xs:complexType name="inferredFormalParameterList">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="assignmentExpression" type="f:assignmentExpression"/>
+    <xs:complexType name="assignmentExpression">
+        <xs:choice>
+            <xs:element ref="f:conditionalExpression"/>
+            <xs:element ref="f:assignment"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="assignment" type="f:assignment"/>
+    <xs:complexType name="assignment">
+        <xs:sequence>
+            <xs:element ref="f:leftHandSide"/>
+            <xs:element ref="f:assignmentOperator"/>
+            <xs:element ref="f:expression"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="leftHandSide" type="f:leftHandSide"/>
+    <xs:complexType name="leftHandSide">
+        <xs:choice>
+            <xs:element ref="f:expressionName"/>
+            <xs:element ref="f:fieldAccess"/>
+            <xs:element ref="f:arrayAccess"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="conditionalExpression" type="f:conditionalExpression"/>
+    <xs:complexType name="conditionalExpression">
 
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="typeArguments" type="f:typeArguments"/>
-	<xs:complexType name="typeArguments">
-		<xs:sequence>
-			<xs:element ref="f:lessThan"/>
-			<xs:element ref="f:typeArgumentList"/>
-			<xs:element ref="f:greaterThan"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeArgumentList" type="f:typeArgumentList"/>
-	<xs:complexType name="typeArgumentList">
-		<xs:sequence>
-			<xs:element ref="f:typeArgument"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:typeArgument"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enumDeclaration" type="f:enumDeclaration"/>
-	<xs:complexType name="enumDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:classModifier"/>
-			<xs:element ref="f:enum"/>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:superInterfaces" minOccurs="0"/>
-			<xs:element ref="f:enumBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="superInterfaces" type="f:superInterfaces"/>
-	<xs:complexType name="superInterfaces">
-		<xs:sequence>
-			<xs:element ref="f:implements"/>
-			<xs:element ref="f:interfaceTypeList"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enumBody" type="f:enumBody"/>
-	<xs:complexType name="enumBody">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:enumConstantList" minOccurs="0"/>
-			<xs:element ref="f:comma" minOccurs="0"/>
-			<xs:element ref="f:enumBodyDeclarations" minOccurs="0"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enumConstantList" type="f:enumConstantList"/>
-	<xs:complexType name="enumConstantList">
-		<xs:sequence>
-			<xs:element ref="f:enumConstant"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:enumConstant"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enumConstant" type="f:enumConstant"/>
-	<xs:complexType name="enumConstant">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence minOccurs="0">
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:argumentList" minOccurs="0"/>
-				<xs:element ref="f:rightParen"/>
-			</xs:sequence>
-			<xs:element ref="f:classBody" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enumBodyDeclarations" type="f:enumBodyDeclarations"/>
-	<xs:complexType name="enumBodyDeclarations">
-		<xs:sequence>
-			<xs:element ref="f:classBodyDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="interfaceDeclaration" type="f:interfaceDeclaration"/>
-	<xs:complexType name="interfaceDeclaration">
-		<xs:choice>
-			<xs:element ref="f:normalInterfaceDeclaration"/>
-			<xs:element ref="f:annotationTypeDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="normalInterfaceDeclaration" type="f:normalInterfaceDeclaration"/>
-	<xs:complexType name="normalInterfaceDeclaration">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:interface"/>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:typeParameters" minOccurs="0"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:extendsInterfaces" minOccurs="0"/>
-				<xs:element ref="f:interfaceBody"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="interfaceModifier" type="f:interfaceModifier"/>
-	<xs:complexType name="interfaceModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:protected"/>
-			<xs:element ref="f:private"/>
-			<xs:element ref="f:abstract"/>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:strictfp"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="extendsInterfaces" type="f:extendsInterfaces"/>
-	<xs:complexType name="extendsInterfaces">
-		<xs:sequence>
-			<xs:element ref="f:extends"/>
-			<xs:element ref="f:interfaceTypeList"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="interfaceBody" type="f:interfaceBody"/>
-	<xs:complexType name="interfaceBody">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:interfaceMemberDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="interfaceMemberDeclaration" type="f:interfaceMemberDeclaration"/>
-	<xs:complexType name="interfaceMemberDeclaration">
-		<xs:choice>
-			<xs:element ref="f:constantDeclaration"/>
-			<xs:element ref="f:interfaceMethodDeclaration"/>
-			<xs:element ref="f:classDeclaration"/>
-			<xs:element ref="f:interfaceDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="constantDeclaration" type="f:constantDeclaration"/>
-	<xs:complexType name="constantDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:constantModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorList"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="constantModifier" type="f:constantModifier"/>
-	<xs:complexType name="constantModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:final"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="interfaceMethodDeclaration" type="f:interfaceMethodDeclaration"/>
-	<xs:complexType name="interfaceMethodDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:interfaceMethodModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:methodHeader"/>
-			<xs:element ref="f:methodBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="interfaceMethodModifier" type="f:interfaceMethodModifier"/>
-	<xs:complexType name="interfaceMethodModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:abstract"/>
-			<xs:element ref="f:default"/>
-			<xs:element ref="f:static"/>
-			<xs:element ref="f:strictfp"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="annotationTypeDeclaration" type="f:annotationTypeDeclaration"/>
-	<xs:complexType name="annotationTypeDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:at"/>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:annotationTypeBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="annotationTypeBody" type="f:annotationTypeBody"/>
-	<xs:complexType name="annotationTypeBody">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:annotationTypeMemberDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="annotationTypeMemberDeclaration" type="f:annotationTypeMemberDeclaration"/>
-	<xs:complexType name="annotationTypeMemberDeclaration">
-		<xs:choice>
-			<xs:element ref="f:annotationTypeElementDeclaration"/>
-			<xs:element ref="f:constantDeclaration"/>
-			<xs:element ref="f:classDeclaration"/>
-			<xs:element ref="f:interfaceDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="annotationTypeElementDeclaration" type="f:annotationTypeElementDeclaration"/>
-	<xs:complexType name="annotationTypeElementDeclaration">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:annotationTypeElementModifier" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:unannType"/>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:rightParen"/>
-				<xs:element ref="f:dims" minOccurs="0"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:defaultValue" minOccurs="0"/>
-				<xs:element ref="f:semicolon"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="annotationTypeElementModifier" type="f:annotationTypeElementModifier"/>
-	<xs:complexType name="annotationTypeElementModifier">
-		<xs:choice>
-			<xs:element ref="f:public"/>
-			<xs:element ref="f:abstract"/>
-		</xs:choice>
-	</xs:complexType>
-
-
-	<xs:element name="defaultValue" type="f:defaultValue"/>
-	<xs:complexType name="defaultValue">
-		<xs:sequence>
-			<xs:element ref="f:default"/>
-			<xs:element ref="f:elementValue"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="elementValuePairList" type="f:elementValuePairList"/>
-	<xs:complexType name="elementValuePairList">
-		<xs:sequence>
-			<xs:element ref="f:elementValuePair"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:elementValuePair"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="elementValuePair" type="f:elementValuePair"/>
-	<xs:complexType name="elementValuePair">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:equals"/>
-			<xs:element ref="f:elementValue"/>
-		</xs:sequence>
-	</xs:complexType>
-
-
-	<xs:element name="elementValue" type="f:elementValue"/>
-	<xs:complexType name="elementValue">
-		<xs:choice>
-			<xs:element ref="f:conditionalExpression"/>
-			<xs:element ref="f:elementValueArrayInitializer"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="elementValueArrayInitializer" type="f:elementValueArrayInitializer"/>
-	<xs:complexType name="elementValueArrayInitializer">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:elementValueList" minOccurs="0"/>
-			<xs:element ref="f:comma" minOccurs="0"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="elementValueList" type="f:elementValueList"/>
-	<xs:complexType name="elementValueList">
-		<xs:sequence>
-			<xs:element ref="f:elementValue"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:elementValue"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="arrayInitializer" type="f:arrayInitializer"/>
-	<xs:complexType name="arrayInitializer">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:variableInitializerList" minOccurs="0"/>
-			<xs:element ref="f:comma" minOccurs="0"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="variableInitializerList" type="f:variableInitializerList"/>
-	<xs:complexType name="variableInitializerList">
-		<xs:sequence>
-			<xs:element ref="f:variableInitializer"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:variableInitializer"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="block" type="f:block"/>
-	<xs:complexType name="block">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:blockStatements" minOccurs="0"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="blockStatements" type="f:blockStatements"/>
-	<xs:complexType name="blockStatements">
-		<xs:sequence>
-			<xs:element ref="f:blockStatement" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="blockStatement" type="f:blockStatement"/>
-	<xs:complexType name="blockStatement">
-		<xs:choice>
-			<xs:element ref="f:localVariableDeclarationStatement"/>
-			<xs:element ref="f:classDeclaration"/>
-			<xs:element ref="f:statement"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="localVariableDeclarationStatement" type="f:localVariableDeclarationStatement"/>
-	<xs:complexType name="localVariableDeclarationStatement">
-		<xs:sequence>
-			<xs:element ref="f:localVariableDeclaration"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="localVariableDeclaration" type="f:localVariableDeclaration"/>
-	<xs:complexType name="localVariableDeclaration">
-		<xs:sequence>
-			<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorList"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="statement" type="f:statement"/>
-	<xs:complexType name="statement">
-		<xs:choice>
-			<xs:element ref="f:statementWithoutTrailingSubstatement"/>
-			<xs:element ref="f:labeledStatement"/>
-			<xs:element ref="f:ifThenStatement"/>
-			<xs:element ref="f:ifThenElseStatement"/>
-			<xs:element ref="f:whileStatement"/>
-			<xs:element ref="f:forStatement"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="statementNoShortIf" type="f:statementNoShortIf"/>
-	<xs:complexType name="statementNoShortIf">
-		<xs:choice>
-			<xs:element ref="f:statementWithoutTrailingSubstatement"/>
-			<xs:element ref="f:labeledStatementNoShortIf"/>
-			<xs:element ref="f:ifThenElseStatementNoShortIf"/>
-			<xs:element ref="f:whileStatementNoShortIf"/>
-			<xs:element ref="f:forStatementNoShortIf"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="statementWithoutTrailingSubstatement" type="f:statementWithoutTrailingSubstatement"/>
-	<xs:complexType name="statementWithoutTrailingSubstatement">
-		<xs:choice>
-			<xs:element ref="f:block"/>
-			<xs:element ref="f:emptyStatement"/>
-			<xs:element ref="f:expressionStatement"/>
-			<xs:element ref="f:assertStatement"/>
-			<xs:element ref="f:switchStatement"/>
-			<xs:element ref="f:doStatement"/>
-			<xs:element ref="f:breakStatement"/>
-			<xs:element ref="f:continueStatement"/>
-			<xs:element ref="f:returnStatement"/>
-			<xs:element ref="f:synchronizedStatement"/>
-			<xs:element ref="f:throwStatement"/>
-			<xs:element ref="f:tryStatement"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="assertStatement" type="f:assertStatement"/>
-	<xs:complexType name="assertStatement">
-		<xs:sequence>
-			<xs:element ref="f:assert"/>
-			<xs:element ref="f:expression"/>
-			<xs:choice>
-				<xs:sequence>
-					<xs:element ref="f:semicolon"/>
-				</xs:sequence>
-				<xs:sequence>
-					<xs:element ref="f:colon"/>
-					<xs:element ref="f:expression"/>
-					<xs:element ref="f:semicolon"/>
-				</xs:sequence>
-			</xs:choice>
-		</xs:sequence>
-
-	</xs:complexType>
-
-	<xs:element name="emptyStatement" type="f:emptyStatement"/>
-	<xs:complexType name="emptyStatement">
-		<xs:sequence>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="labeledStatement" type="f:labeledStatement"/>
-	<xs:complexType name="labeledStatement">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:colon"/>
-			<xs:element ref="f:statement"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="labeledStatementNoShortIf" type="f:labeledStatementNoShortIf"/>
-	<xs:complexType name="labeledStatementNoShortIf">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:element ref="f:colon"/>
-			<xs:element ref="f:statementNoShortIf"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="expressionStatement" type="f:expressionStatement"/>
-	<xs:complexType name="expressionStatement">
-		<xs:sequence>
-			<xs:element ref="f:statementExpression"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="statementExpression" type="f:statementExpression"/>
-	<xs:complexType name="statementExpression">
-		<xs:choice>
-			<xs:element ref="f:assignment"/>
-			<xs:element ref="f:preIncrementExpression"/>
-			<xs:element ref="f:preDecrementExpression"/>
-			<xs:element ref="f:postIncrementExpression"/>
-			<xs:element ref="f:postDecrementExpression"/>
-			<xs:element ref="f:methodInvocation"/>
-			<xs:element ref="f:classInstanceCreationExpression"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="ifThenStatement" type="f:ifThenStatement"/>
-	<xs:complexType name="ifThenStatement">
-		<xs:sequence>
-			<xs:element ref="f:if"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statement"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="ifThenElseStatement" type="f:ifThenElseStatement"/>
-	<xs:complexType name="ifThenElseStatement">
-		<xs:sequence>
-			<xs:element ref="f:if"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statementNoShortIf"/>
-			<xs:element ref="f:else"/>
-			<xs:element ref="f:statement"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="ifThenElseStatementNoShortIf" type="f:ifThenElseStatementNoShortIf"/>
-	<xs:complexType name="ifThenElseStatementNoShortIf">
-		<xs:sequence>
-			<xs:element ref="f:if"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statementNoShortIf"/>
-			<xs:element ref="f:else"/>
-			<xs:element ref="f:statementNoShortIf"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="switchStatement" type="f:switchStatement"/>
-	<xs:complexType name="switchStatement">
-		<xs:sequence>
-			<xs:element ref="f:switch"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:switchBlock"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="switchBlock" type="f:switchBlock"/>
-	<xs:complexType name="switchBlock">
-		<xs:sequence>
-			<xs:element ref="f:leftBrace"/>
-			<xs:element ref="f:switchBlockStatementGroup" minOccurs="0"/>
-			<xs:element ref="f:switchLabel" minOccurs="0"/>
-			<xs:element ref="f:rightBrace"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="switchBlockStatementGroup" type="f:switchBlockStatementGroup"/>
-	<xs:complexType name="switchBlockStatementGroup">
-		<xs:sequence>
-			<xs:element ref="f:switchLabels"/>
-			<xs:element ref="f:blockStatements"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="switchLabels" type="f:switchLabels"/>
-	<xs:complexType name="switchLabels">
-		<xs:sequence>
-			<xs:element ref="f:switchLabel"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:switchLabel"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="switchLabel" type="f:switchLabel"/>
-	<xs:complexType name="switchLabel">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:case"/>
-
-				<xs:choice>
-
-					<xs:sequence>
-						<xs:element ref="f:constantExpression"/>
-						<xs:element ref="f:colon"/>
-					</xs:sequence>
-
-					<xs:sequence>
-						<xs:element ref="f:enumConstantName"/>
-						<xs:element ref="f:colon"/>
-					</xs:sequence>
-
-				</xs:choice>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:default"/>
-				<xs:element ref="f:colon"/>
-			</xs:sequence>
-
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="enumConstantName" type="f:enumConstantName"/>
-	<xs:complexType name="enumConstantName">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="whileStatement" type="f:whileStatement"/>
-	<xs:complexType name="whileStatement">
-		<xs:sequence>
-			<xs:element ref="f:while"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statement"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="whileStatementNoShortIf" type="f:whileStatementNoShortIf"/>
-	<xs:complexType name="whileStatementNoShortIf">
-		<xs:sequence>
-			<xs:element ref="f:while"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statementNoShortIf"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="doStatement" type="f:doStatement"/>
-	<xs:complexType name="doStatement">
-		<xs:sequence>
-			<xs:element ref="f:do"/>
-			<xs:element ref="f:statement"/>
-			<xs:element ref="f:while"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="forStatement" type="f:forStatement"/>
-	<xs:complexType name="forStatement">
-		<xs:choice>
-			<xs:element ref="f:basicForStatement"/>
-			<xs:element ref="f:enhancedForStatement"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="forStatementNoShortIf" type="f:forStatementNoShortIf"/>
-	<xs:complexType name="forStatementNoShortIf">
-		<xs:choice>
-			<xs:element ref="f:basicForStatementNoShortIf"/>
-			<xs:element ref="f:enhancedForStatementNoShortIf"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="basicForStatement" type="f:basicForStatement"/>
-	<xs:complexType name="basicForStatement">
-		<xs:sequence>
-			<xs:element ref="f:for"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:forInit" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-			<xs:element ref="f:expression" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-			<xs:element ref="f:forUpdate" minOccurs="0"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statement"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="basicForStatementNoShortIf" type="f:basicForStatementNoShortIf"/>
-	<xs:complexType name="basicForStatementNoShortIf">
-		<xs:sequence>
-			<xs:element ref="f:for"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:forInit" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-			<xs:element ref="f:expression" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-			<xs:element ref="f:forUpdate" minOccurs="0"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statementNoShortIf"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="forInit" type="f:forInit"/>
-	<xs:complexType name="forInit">
-		<xs:choice>
-			<xs:element ref="f:statementExpressionList"/>
-			<xs:element ref="f:localVariableDeclaration"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="forUpdate" type="f:forUpdate"/>
-	<xs:complexType name="forUpdate">
-		<xs:sequence>
-			<xs:element ref="f:statementExpressionList"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="statementExpressionList" type="f:statementExpressionList"/>
-	<xs:complexType name="statementExpressionList">
-		<xs:sequence>
-			<xs:element ref="f:statementExpression"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:statementExpression"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enhancedForStatement" type="f:enhancedForStatement"/>
-	<xs:complexType name="enhancedForStatement">
-		<xs:sequence>
-			<xs:element ref="f:for"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorId"/>
-			<xs:element ref="f:colon"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statement"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="enhancedForStatementNoShortIf" type="f:enhancedForStatementNoShortIf"/>
-	<xs:complexType name="enhancedForStatementNoShortIf">
-		<xs:sequence>
-			<xs:element ref="f:for"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorId"/>
-			<xs:element ref="f:colon"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:statementNoShortIf"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="breakStatement" type="f:breakStatement"/>
-	<xs:complexType name="breakStatement">
-		<xs:sequence>
-			<xs:element ref="f:break"/>
-			<xs:element ref="f:identifier" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="continueStatement" type="f:continueStatement"/>
-	<xs:complexType name="continueStatement">
-		<xs:sequence>
-			<xs:element ref="f:continue"/>
-			<xs:element ref="f:identifier" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="returnStatement" type="f:returnStatement"/>
-	<xs:complexType name="returnStatement">
-		<xs:sequence>
-			<xs:element ref="f:return"/>
-			<xs:element ref="f:expression" minOccurs="0"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="throwStatement" type="f:throwStatement"/>
-	<xs:complexType name="throwStatement">
-		<xs:sequence>
-			<xs:element ref="f:throw"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:semicolon"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="synchronizedStatement" type="f:synchronizedStatement"/>
-	<xs:complexType name="synchronizedStatement">
-		<xs:sequence>
-			<xs:element ref="f:synchronized"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:block"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="tryStatement" type="f:tryStatement"/>
-	<xs:complexType name="tryStatement">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:try"/>
-				<xs:element ref="f:block"/>
-				<xs:element ref="f:catches" minOccurs="0"/>
-				<xs:element ref="f:finally" minOccurs="0"/>
-			</xs:sequence>
-			<xs:element ref="f:tryWithResourcesStatement"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="catches" type="f:catches"/>
-	<xs:complexType name="catches">
-		<xs:sequence>
-			<xs:element ref="f:catchClause"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:catchClause"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="catchClause" type="f:catchClause"/>
-	<xs:complexType name="catchClause">
-		<xs:sequence>
-			<xs:element ref="f:catch"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:catchFormalParameter"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:block"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="catchFormalParameter" type="f:catchFormalParameter"/>
-	<xs:complexType name="catchFormalParameter">
-		<xs:sequence>
-			<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:catchType"/>
-			<xs:element ref="f:variableDeclaratorId"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="catchType" type="f:catchType"/>
-	<xs:complexType name="catchType">
-		<xs:sequence>
-			<xs:element ref="f:unannClassType"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:pipe"/>
-				<xs:element ref="f:unannClassType"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="finally" type="f:finally"/>
-	<xs:complexType name="finally">
-		<xs:sequence>
-			<xs:element ref="f:finally"/>
-			<xs:element ref="f:block"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="tryWithResourcesStatement" type="f:tryWithResourcesStatement"/>
-	<xs:complexType name="tryWithResourcesStatement">
-		<xs:sequence>
-			<xs:element ref="f:try"/>
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:resourceSpecification"/>
-			<xs:element ref="f:rightParen"/>
-			<xs:element ref="f:block"/>
-			<xs:element ref="f:catches" minOccurs="0"/>
-			<xs:element ref="f:finally" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-
-	<xs:element name="resourceSpecification" type="f:resourceSpecification"/>
-	<xs:complexType name="resourceSpecification">
-		<xs:sequence>
-			<xs:element ref="f:resourceList"/>
-			<xs:sequence minOccurs="0">
-				<xs:element ref="f:semicolon"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="resourceList" type="f:resourceList"/>
-	<xs:complexType name="resourceList">
-		<xs:sequence>
-			<xs:element ref="f:resource"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:semicolon"/>
-				<xs:element ref="f:resource"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="resource" type="f:resource"/>
-	<xs:complexType name="resource">
-		<xs:sequence>
-			<xs:element ref="f:variableModifier" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="f:unannType"/>
-			<xs:element ref="f:variableDeclaratorId"/>
-			<xs:element ref="f:equals"/>
-			<xs:element ref="f:expression"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="primary" type="f:primary"/>
-	<xs:complexType name="primary">
-		<xs:choice>
-			<xs:element ref="f:primaryNoNewArray"/>
-			<xs:element ref="f:arrayCreationExpression"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="primaryNoNewArray" type="f:primaryNoNewArray"/>
-	<xs:complexType name="primaryNoNewArray">
-		<xs:choice>
-			<xs:element ref="f:literal"/>
-			<xs:element ref="f:classLiteral"/>
-			<xs:element ref="f:this"/>
-			<xs:sequence>
-				<xs:element ref="f:typeName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:this"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:expression"/>
-				<xs:element ref="f:rightParen"/>
-			</xs:sequence>
-			<xs:element ref="f:classInstanceCreationExpression"/>
-			<xs:element ref="f:fieldAccess"/>
-			<xs:element ref="f:arrayAccess"/>
-			<xs:element ref="f:methodInvocation"/>
-			<xs:element ref="f:methodReference"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="classLiteral" type="f:classLiteral"/>
-	<xs:complexType name="classLiteral">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:typeName"/>
-				<xs:element ref="f:squareBrackets" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:class"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:numericType"/>
-				<xs:element ref="f:squareBrackets" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:class"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:boolean"/>
-				<xs:element ref="f:squareBrackets" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:class"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:void"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:class"/>
-			</xs:sequence>
-
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="classInstanceCreationExpression" type="f:classInstanceCreationExpression"/>
-	<xs:complexType name="classInstanceCreationExpression">
-		<xs:choice>
-			<xs:element ref="f:unqualifiedClassInstanceCreationExpression"/>
-
-			<xs:sequence>
-				<xs:element ref="f:expressionName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:unqualifiedClassInstanceCreationExpression"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:primary"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:unqualifiedClassInstanceCreationExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="unqualifiedClassInstanceCreationExpression" type="f:unqualifiedClassInstanceCreationExpression"/>
-	<xs:complexType name="unqualifiedClassInstanceCreationExpression">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:new"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:classOrInterfaceTypeToInstantiate"/>
-				<xs:element ref="f:argumentList" minOccurs="0"/>
-			</xs:sequence>
-			<xs:element ref="f:classBody"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="classOrInterfaceTypeToInstantiate" type="f:classOrInterfaceTypeToInstantiate"/>
-	<xs:complexType name="classOrInterfaceTypeToInstantiate">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:typeArgumentsOrDiamond"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeArgumentsOrDiamond" type="f:typeArgumentsOrDiamond"/>
-	<xs:complexType name="typeArgumentsOrDiamond">
-		<xs:choice>
-			<xs:element ref="f:typeArguments"/>
-			<xs:element ref="f:diamond"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="fieldAccess" type="f:fieldAccess"/>
-	<xs:complexType name="fieldAccess">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:primary"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:super"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:typeName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:super"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="typeName" type="f:typeName"/>
-	<xs:complexType name="typeName">
-		<xs:choice>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence>
-				<xs:element ref="f:packageOrTypeName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="packageOrTypeName" type="f:packageOrTypeName"/>
-	<xs:complexType name="packageOrTypeName">
-		<xs:choice>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence>
-				<xs:element ref="f:packageOrTypeName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="arrayAccess" type="f:arrayAccess"/>
-	<xs:complexType name="arrayAccess">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:expressionName"/>
-				<xs:element ref="f:leftBracket"/>
-				<xs:element ref="f:expression"/>
-				<xs:element ref="f:rightBracket"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:primaryNoNewArray"/>
-				<xs:element ref="f:leftBracket"/>
-				<xs:element ref="f:expression"/>
-				<xs:element ref="f:rightBracket"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="methodInvocation" type="f:methodInvocation"/>
-	<xs:complexType name="methodInvocation">
-		<xs:sequence>
-
-			<xs:choice>
-
-				<xs:element ref="f:methodName"/>
-
-				<xs:sequence>
-
-					<xs:choice>
-						<xs:sequence>
-							<xs:element ref="f:typeName"/>
-							<xs:sequence minOccurs="0">
-								<xs:element ref="f:dot"/>
-								<xs:element ref="f:super"/>
-							</xs:sequence>
-						</xs:sequence>
-
-						<xs:element ref="f:expressionName"/>
-						<xs:element ref="f:primary"/>
-						<xs:element ref="f:super"/>
-
-					</xs:choice>
-
-					<xs:element ref="f:dot"/>
-					<xs:element ref="f:typeArguments" minOccurs="0"/>
-					<xs:element ref="f:identifier"/>
-				</xs:sequence>
-			</xs:choice>
-
-			<xs:element ref="f:leftParen"/>
-			<xs:element ref="f:argumentList" minOccurs="0"/>
-			<xs:element ref="f:rightParen"/>
-
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="methodName" type="f:methodName"/>
-	<xs:complexType name="methodName">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="argumentList" type="f:argumentList"/>
-	<xs:complexType name="argumentList">
-		<xs:sequence>
-			<xs:element ref="f:expression"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:expression"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="methodReference" type="f:methodReference"/>
-	<xs:complexType name="methodReference">
-		<xs:choice>
-
-			<xs:sequence>
-				<xs:element ref="f:expressionName"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:referenceType"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-
-
-			<xs:sequence>
-				<xs:element ref="f:primary"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:super"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:typeName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:super"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:classType"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:new"/>
-			</xs:sequence>
-
-
-			<xs:sequence>
-				<xs:element ref="f:arrayType"/>
-				<xs:element ref="f:doubleColon"/>
-				<xs:element ref="f:new"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="arrayCreationExpression" type="f:arrayCreationExpression"/>
-	<xs:complexType name="arrayCreationExpression">
-		<xs:choice>
-
-			<xs:sequence>
-				<xs:element ref="f:new"/>
-				<xs:element ref="f:primitiveType"/>
-				<xs:element ref="f:dimExprs"/>
-				<xs:element ref="f:dims" minOccurs="0"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:new"/>
-				<xs:element ref="f:classOrInterfaceType"/>
-				<xs:element ref="f:dimExprs"/>
-				<xs:element ref="f:dims" minOccurs="0"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:new"/>
-				<xs:element ref="f:primitiveType"/>
-				<xs:element ref="f:dims"/>
-				<xs:element ref="f:arrayInitializer"/>
-			</xs:sequence>
-
-			<xs:sequence>
-				<xs:element ref="f:new"/>
-				<xs:element ref="f:classOrInterfaceType"/>
-				<xs:element ref="f:dims"/>
-				<xs:element ref="f:arrayInitializer"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="dimExprs" type="f:dimExprs"/>
-	<xs:complexType name="dimExprs">
-		<xs:sequence>
-			<xs:element ref="f:dimExpr" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="dimExpr" type="f:dimExpr"/>
-	<xs:complexType name="dimExpr">
 		<xs:sequence>
-			<xs:element ref="f:leftBracket"/>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:rightBracket"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="expression" type="f:expression"/>
-	<xs:complexType name="expression">
-		<xs:choice>
-			<xs:element ref="f:lambdaExpression"/>
-			<xs:element ref="f:assignmentExpression"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="lambdaExpression" type="f:lambdaExpression"/>
-	<xs:complexType name="lambdaExpression">
-		<xs:sequence>
-			<xs:element ref="f:lambdaParameters"/>
-			<xs:element ref="f:rightArrow"/>
-			<xs:element ref="f:lambdaBody"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="lambdaBody" type="f:lambdaBody"/>
-	<xs:complexType name="lambdaBody">
-		<xs:choice>
-			<xs:element ref="f:expression"/>
-			<xs:element ref="f:block"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="lambdaParameters" type="f:lambdaParameters"/>
-	<xs:complexType name="lambdaParameters">
-		<xs:choice>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:formalParameterList"/>
-				<xs:element ref="f:rightParen"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:inferredFormalParameterList"/>
-				<xs:element ref="f:rightParen"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="inferredFormalParameterList" type="f:inferredFormalParameterList"/>
-	<xs:complexType name="inferredFormalParameterList">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="f:comma"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="assignmentExpression" type="f:assignmentExpression"/>
-	<xs:complexType name="assignmentExpression">
-		<xs:choice>
-			<xs:element ref="f:conditionalExpression"/>
-			<xs:element ref="f:assignment"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="assignment" type="f:assignment"/>
-	<xs:complexType name="assignment">
-		<xs:sequence>
-			<xs:element ref="f:leftHandSide"/>
-			<xs:element ref="f:assignmentOperator"/>
-			<xs:element ref="f:expression"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="leftHandSide" type="f:leftHandSide"/>
-	<xs:complexType name="leftHandSide">
-		<xs:choice>
-			<xs:element ref="f:expressionName"/>
-			<xs:element ref="f:fieldAccess"/>
-			<xs:element ref="f:arrayAccess"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="conditionalExpression" type="f:conditionalExpression"/>
-	<xs:complexType name="conditionalExpression">
-
-		<xs:choice>
-
 			<xs:element ref="f:conditionalOrExpression"/>
 
-			<xs:sequence>
-				<xs:element ref="f:conditionalOrExpression"/>
-				<xs:element ref="f:questionMark"/>
-				<xs:element ref="f:expression"/>
-				<xs:element ref="f:colon"/>
+			<xs:sequence minOccurs="0">
+				<xs:sequence>
+					<xs:element ref="f:questionMark"/>
+					<xs:element ref="f:expression"/>
+					<xs:element ref="f:colon"/>
+					<xs:choice>
+						<xs:element ref="f:conditionalOrExpression"/>
+						<xs:element ref="f:lambdaExpression"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:sequence>
 
+		</xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="conditionalOrExpression" type="f:conditionalOrExpression"/>
+    <xs:complexType name="conditionalOrExpression">
+        <xs:choice>
+            <xs:element ref="f:conditionalAndExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:conditionalOrExpression"/>
+                <xs:element ref="f:doublePipe"/>
+                <xs:element ref="f:conditionalAndExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="conditionalAndExpression" type="f:conditionalAndExpression"/>
+    <xs:complexType name="conditionalAndExpression">
+        <xs:choice>
+            <xs:element ref="f:inclusiveOrExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:conditionalAndExpression"/>
+                <xs:element ref="f:doubleAmpersand"/>
+                <xs:element ref="f:inclusiveOrExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="inclusiveOrExpression" type="f:inclusiveOrExpression"/>
+    <xs:complexType name="inclusiveOrExpression">
+        <xs:choice>
+            <xs:element ref="f:exclusiveOrExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:inclusiveOrExpression"/>
+                <xs:element ref="f:pipe"/>
+                <xs:element ref="f:exclusiveOrExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="exclusiveOrExpression" type="f:exclusiveOrExpression"/>
+    <xs:complexType name="exclusiveOrExpression">
+        <xs:choice>
+            <xs:element ref="f:andExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:exclusiveOrExpression"/>
+                <xs:element ref="f:hat"/>
+                <xs:element ref="f:andExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="andExpression" type="f:andExpression"/>
+    <xs:complexType name="andExpression">
+        <xs:choice>
+            <xs:element ref="f:equalityExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:andExpression"/>
+                <xs:element ref="f:ampersand"/>
+                <xs:element ref="f:equalityExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="equalityExpression" type="f:equalityExpression"/>
+    <xs:complexType name="equalityExpression">
+        <xs:choice>
+            <xs:element ref="f:relationalExpression"/>
+            <xs:sequence>
+				<xs:element ref="f:equalityExpression"/>
 				<xs:choice>
-					<xs:element ref="f:conditionalExpression"/>
-					<xs:element ref="f:lambdaExpression"/>
+					<xs:sequence>
+						<xs:element ref="f:equalsEquals"/>
+						<xs:element ref="f:relationalExpression"/>
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element ref="f:exclamationMarkEquals"/>
+						<xs:element ref="f:relationalExpression"/>
+					</xs:sequence>
 				</xs:choice>
-
 			</xs:sequence>
-		</xs:choice>
+        </xs:choice>
+    </xs:complexType>
 
-	</xs:complexType>
+    <xs:element name="relationalExpression" type="f:relationalExpression"/>
+    <xs:complexType name="relationalExpression">
+        <xs:choice>
+            <xs:element ref="f:shiftExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:relationalExpression"/>
+                <xs:choice>
+                    <xs:element ref="f:lessThan"/>
+                    <xs:element ref="f:greaterThan"/>
+                    <xs:element ref="f:lessThanEquals"/>
+                    <xs:element ref="f:greaterThanEquals"/>
+                    <xs:element ref="f:instanceof"/>
+                </xs:choice>
+                <xs:element ref="f:shiftExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="conditionalOrExpression" type="f:conditionalOrExpression"/>
-	<xs:complexType name="conditionalOrExpression">
-		<xs:choice>
-			<xs:element ref="f:conditionalAndExpression"/>
+    <xs:element name="shiftExpression" type="f:shiftExpression"/>
+    <xs:complexType name="shiftExpression">
+        <xs:choice>
+            <xs:element ref="f:additiveExpression"/>
 			<xs:sequence>
-				<xs:element ref="f:conditionalOrExpression"/>
-				<xs:element ref="f:doublePipe"/>
-				<xs:element ref="f:conditionalAndExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="conditionalAndExpression" type="f:conditionalAndExpression"/>
-	<xs:complexType name="conditionalAndExpression">
-		<xs:choice>
-			<xs:element ref="f:inclusiveOrExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:conditionalAndExpression"/>
-				<xs:element ref="f:doubleAmpersand"/>
-				<xs:element ref="f:inclusiveOrExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="inclusiveOrExpression" type="f:inclusiveOrExpression"/>
-	<xs:complexType name="inclusiveOrExpression">
-		<xs:choice>
-			<xs:element ref="f:exclusiveOrExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:inclusiveOrExpression"/>
-				<xs:element ref="f:pipe"/>
-				<xs:element ref="f:exclusiveOrExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="exclusiveOrExpression" type="f:exclusiveOrExpression"/>
-	<xs:complexType name="exclusiveOrExpression">
-		<xs:choice>
-			<xs:element ref="f:andExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:exclusiveOrExpression"/>
-				<xs:element ref="f:hat"/>
-				<xs:element ref="f:andExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="andExpression" type="f:andExpression"/>
-	<xs:complexType name="andExpression">
-		<xs:choice>
-			<xs:element ref="f:equalityExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:andExpression"/>
-				<xs:element ref="f:ampersand"/>
-				<xs:element ref="f:equalityExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="equalityExpression" type="f:equalityExpression"/>
-	<xs:complexType name="equalityExpression">
-		<xs:choice>
-			<xs:element ref="f:relationalExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:equalityExpression"/>
-				<xs:element ref="f:equalsEquals"/>
-				<xs:element ref="f:relationalExpression"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:equalityExpression"/>
-				<xs:element ref="f:exclamationMarkEquals"/>
-				<xs:element ref="f:relationalExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="relationalExpression" type="f:relationalExpression"/>
-	<xs:complexType name="relationalExpression">
-		<xs:choice>
-			<xs:element ref="f:shiftExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:relationalExpression"/>
+				<xs:element ref="f:shiftExpression"/>
 				<xs:choice>
-					<xs:element ref="f:lessThan"/>
-					<xs:element ref="f:greaterThan"/>
-					<xs:element ref="f:lessThanEquals"/>
-					<xs:element ref="f:greaterThanEquals"/>
-					<xs:element ref="f:instanceof"/>
+					<xs:element ref="f:lessThanLessThan"/>
+					<xs:element ref="f:moreThanMoreThan"/>
+					<xs:element ref="f:moreThanMoreThanMoreThan"/>
 				</xs:choice>
-				<xs:element ref="f:shiftExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="shiftExpression" type="f:shiftExpression"/>
-	<xs:complexType name="shiftExpression">
-		<xs:choice>
-			<xs:element ref="f:additiveExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:shiftExpression"/>
-				<xs:element ref="f:lessThanLessThan"/>
 				<xs:element ref="f:additiveExpression"/>
 			</xs:sequence>
-			<xs:element ref="f:additiveExpression"/>
-		</xs:choice>
-	</xs:complexType>
 
-	<xs:element name="additiveExpression" type="f:additiveExpression"/>
-	<xs:complexType name="additiveExpression">
-		<xs:choice>
-			<xs:element ref="f:multiplicativeExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:additiveExpression"/>
-				<xs:choice>
-					<xs:element ref="f:plus"/>
-					<xs:element ref="f:minus"/>
-				</xs:choice>
-				<xs:element ref="f:multiplicativeExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="multiplicativeExpression" type="f:multiplicativeExpression"/>
-	<xs:complexType name="multiplicativeExpression">
-		<xs:choice>
-			<xs:element ref="f:unaryExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:multiplicativeExpression"/>
-				<xs:choice>
-					<xs:element ref="f:star"/>
-					<xs:element ref="f:forwardSlash"/>
-					<xs:element ref="f:percent"/>
-				</xs:choice>
-				<xs:element ref="f:unaryExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="additiveExpression" type="f:additiveExpression"/>
+    <xs:complexType name="additiveExpression">
+        <xs:choice>
+            <xs:element ref="f:multiplicativeExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:additiveExpression"/>
+                <xs:choice>
+                    <xs:element ref="f:plus"/>
+                    <xs:element ref="f:minus"/>
+                </xs:choice>
+                <xs:element ref="f:multiplicativeExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="multiplicativeExpression" type="f:multiplicativeExpression"/>
+    <xs:complexType name="multiplicativeExpression">
+        <xs:choice>
+            <xs:element ref="f:unaryExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:multiplicativeExpression"/>
+                <xs:choice>
+                    <xs:element ref="f:star"/>
+                    <xs:element ref="f:forwardSlash"/>
+                    <xs:element ref="f:percent"/>
+                </xs:choice>
+                <xs:element ref="f:unaryExpression"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
 
 
-	<xs:element name="unaryExpression" type="f:unaryExpression"/>
-	<xs:complexType name="unaryExpression">
-		<xs:choice>
-			<xs:element ref="f:preIncrementExpression"/>
-			<xs:element ref="f:preDecrementExpression"/>
+    <xs:element name="unaryExpression" type="f:unaryExpression"/>
+    <xs:complexType name="unaryExpression">
+        <xs:choice>
+            <xs:element ref="f:preIncrementExpression"/>
+            <xs:element ref="f:preDecrementExpression"/>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="f:plusPlus"/>
+                    <xs:element ref="f:unaryExpression"/>
+                </xs:sequence>
+                <xs:sequence>
+
+                </xs:sequence>
+            </xs:choice>
+            <xs:element ref="f:unaryExpressionNotPlusMinus"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="preIncrementExpression" type="f:preIncrementExpression"/>
+    <xs:complexType name="preIncrementExpression">
+        <xs:sequence>
+            <xs:element ref="f:plusPlus"/>
+            <xs:element ref="f:unaryExpression"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="preDecrementExpression" type="f:preDecrementExpression"/>
+    <xs:complexType name="preDecrementExpression">
+        <xs:sequence>
+            <xs:element ref="f:minusMinus"/>
+            <xs:element ref="f:unaryExpression"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="unaryExpressionNotPlusMinus" type="f:unaryExpressionNotPlusMinus"/>
+    <xs:complexType name="unaryExpressionNotPlusMinus">
+        <xs:choice>
+            <xs:element ref="f:postfixExpression"/>
+            <xs:sequence>
+                <xs:element ref="f:tilde"/>
+                <xs:element ref="f:unaryExpression"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:exclamationMark"/>
+                <xs:element ref="f:unaryExpression"/>
+            </xs:sequence>
+            <xs:element ref="f:castExpression"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="postfixExpression" type="f:postfixExpression"/>
+    <xs:complexType name="postfixExpression">
+        <xs:choice>
+            <xs:element ref="f:primary"/>
+            <xs:element ref="f:expressionName"/>
+            <xs:element ref="f:postIncrementExpression"/>
+            <xs:element ref="f:postDecrementExpression"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="expressionName" type="f:expressionName"/>
+    <xs:complexType name="expressionName">
+        <xs:choice>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence>
+                <xs:element ref="f:ambiguousName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="ambiguousName" type="f:ambiguousName"/>
+    <xs:complexType name="ambiguousName">
+        <xs:choice>
+            <xs:element ref="f:identifier"/>
+            <xs:sequence>
+                <xs:element ref="f:ambiguousName"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="postIncrementExpression" type="f:postIncrementExpression"/>
+    <xs:complexType name="postIncrementExpression">
+        <xs:sequence>
+            <xs:element ref="f:postfixExpression"/>
+            <xs:element ref="f:plusPlus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="postDecrementExpression" type="f:postDecrementExpression"/>
+    <xs:complexType name="postDecrementExpression">
+        <xs:sequence>
+            <xs:element ref="f:postfixExpression"/>
+            <xs:element ref="f:minusMinus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="castExpression" type="f:castExpression"/>
+    <xs:complexType name="castExpression">
+        <xs:sequence>
+			<xs:element ref="f:leftParen"/>
+
 			<xs:choice>
 				<xs:sequence>
-					<xs:element ref="f:plusPlus"/>
+
+					<xs:element ref="f:primitiveType"/>
+					<xs:element ref="f:rightParen"/>
 					<xs:element ref="f:unaryExpression"/>
 				</xs:sequence>
+
 				<xs:sequence>
 
+					<xs:element ref="f:referenceType"/>
+					<xs:element ref="f:additionalBound" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="f:rightParen"/>
+
+					<xs:choice>
+						<xs:element ref="f:unaryExpressionNotPlusMinus"/>
+						<xs:element ref="f:lambdaExpression"/>
+					</xs:choice>
+
+
 				</xs:sequence>
+
 			</xs:choice>
-			<xs:element ref="f:unaryExpressionNotPlusMinus"/>
-		</xs:choice>
-	</xs:complexType>
 
-	<xs:element name="preIncrementExpression" type="f:preIncrementExpression"/>
-	<xs:complexType name="preIncrementExpression">
-		<xs:sequence>
-			<xs:element ref="f:plusPlus"/>
-			<xs:element ref="f:unaryExpression"/>
 		</xs:sequence>
-	</xs:complexType>
 
-	<xs:element name="preDecrementExpression" type="f:preDecrementExpression"/>
-	<xs:complexType name="preDecrementExpression">
-		<xs:sequence>
-			<xs:element ref="f:minusMinus"/>
-			<xs:element ref="f:unaryExpression"/>
-		</xs:sequence>
-	</xs:complexType>
+    </xs:complexType>
 
-	<xs:element name="unaryExpressionNotPlusMinus" type="f:unaryExpressionNotPlusMinus"/>
-	<xs:complexType name="unaryExpressionNotPlusMinus">
-		<xs:choice>
-			<xs:element ref="f:postfixExpression"/>
-			<xs:sequence>
-				<xs:element ref="f:tilde"/>
-				<xs:element ref="f:unaryExpression"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:exclamationMark"/>
-				<xs:element ref="f:unaryExpression"/>
-			</xs:sequence>
-			<xs:element ref="f:castExpression"/>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="constantExpression" type="f:constantExpression"/>
+    <xs:complexType name="constantExpression">
+        <xs:sequence>
+            <xs:element ref="f:expression"/>
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:element name="postfixExpression" type="f:postfixExpression"/>
-	<xs:complexType name="postfixExpression">
-		<xs:choice>
-			<xs:element ref="f:primary"/>
-			<xs:element ref="f:expressionName"/>
-			<xs:element ref="f:postIncrementExpression"/>
-			<xs:element ref="f:postDecrementExpression"/>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="referenceType" type="f:referenceType"/>
+    <xs:complexType name="referenceType">
+        <xs:choice>
+            <xs:element ref="f:classOrInterfaceType"/>
+            <xs:element ref="f:typeVariable"/>
+            <xs:element ref="f:arrayType"/>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="expressionName" type="f:expressionName"/>
-	<xs:complexType name="expressionName">
-		<xs:choice>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence>
-				<xs:element ref="f:ambiguousName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="classOrInterfaceType" type="f:classOrInterfaceType"/>
+    <xs:complexType name="classOrInterfaceType">
+        <xs:choice>
+            <xs:element ref="f:classType"/>
+            <xs:element ref="f:interfaceType"/>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="ambiguousName" type="f:ambiguousName"/>
-	<xs:complexType name="ambiguousName">
-		<xs:choice>
-			<xs:element ref="f:identifier"/>
-			<xs:sequence>
-				<xs:element ref="f:ambiguousName"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="classType" type="f:classType"/>
+    <xs:complexType name="classType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="typeArguments" minOccurs="0"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:classOrInterfaceType"/>
+                <xs:element ref="f:dot"/>
+                <xs:element ref="f:identifier"/>
+                <xs:element ref="f:typeArguments" minOccurs="0"/>
+                <xs:element ref="f:identifier"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="postIncrementExpression" type="f:postIncrementExpression"/>
-	<xs:complexType name="postIncrementExpression">
-		<xs:sequence>
-			<xs:element ref="f:postfixExpression"/>
-			<xs:element ref="f:plusPlus"/>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:element name="interfaceType" type="f:interfaceType"/>
+    <xs:complexType name="interfaceType">
+        <xs:sequence>
+            <xs:element ref="f:classType"/>
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:element name="postDecrementExpression" type="f:postDecrementExpression"/>
-	<xs:complexType name="postDecrementExpression">
-		<xs:sequence>
-			<xs:element ref="f:postfixExpression"/>
-			<xs:element ref="f:minusMinus"/>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:element name="typeVariable" type="f:typeVariable"/>
+    <xs:complexType name="typeVariable">
+        <xs:sequence>
+            <xs:element ref="f:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:element name="castExpression" type="f:castExpression"/>
-	<xs:complexType name="castExpression">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:primitiveType"/>
-				<xs:element ref="f:rightParen"/>
-				<xs:element ref="f:unaryExpression"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:referenceType"/>
-				<xs:element ref="f:additionalBound" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:rightParen"/>
-				<xs:element ref="f:unaryExpressionNotPlusMinus"/>
-			</xs:sequence>
+    <xs:element name="arrayType" type="f:arrayType"/>
+    <xs:complexType name="arrayType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:primitiveType"/>
+                <xs:element ref="f:dims"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:classOrInterfaceType"/>
+                <xs:element ref="f:dims"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:typeVariable"/>
+                <xs:element ref="f:dims"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
 
-			<xs:sequence>
-				<xs:element ref="f:leftParen"/>
-				<xs:element ref="f:referenceType"/>
-				<xs:element ref="f:additionalBound" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="f:rightParen"/>
-				<xs:element ref="f:lambdaExpression"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="dims" type="f:dims"/>
+    <xs:complexType name="dims">
+        <xs:sequence>
+            <xs:element ref="f:squareBrackets"/>
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:element name="constantExpression" type="f:constantExpression"/>
-	<xs:complexType name="constantExpression">
-		<xs:sequence>
-			<xs:element ref="f:expression"/>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:element name="typeArgument" type="f:typeArgument"/>
+    <xs:complexType name="typeArgument">
+        <xs:choice>
+            <xs:element ref="f:referenceType"/>
+            <xs:element ref="f:wildcard"/>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="referenceType" type="f:referenceType"/>
-	<xs:complexType name="referenceType">
-		<xs:choice>
-			<xs:element ref="f:classOrInterfaceType"/>
-			<xs:element ref="f:typeVariable"/>
-			<xs:element ref="f:arrayType"/>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="wildcard" type="f:wildcard"/>
+    <xs:complexType name="wildcard">
+        <xs:sequence>
+            <xs:element ref="f:questionMark"/>
+            <xs:element ref="f:wildCardBounds" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:element name="classOrInterfaceType" type="f:classOrInterfaceType"/>
-	<xs:complexType name="classOrInterfaceType">
-		<xs:choice>
-			<xs:element ref="f:classType"/>
-			<xs:element ref="f:interfaceType"/>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="wildCardBounds" type="f:wildCardBounds"/>
+    <xs:complexType name="wildCardBounds">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element ref="f:extends"/>
+                <xs:element ref="f:referenceType"/>
+            </xs:sequence>
+            <xs:sequence>
+                <xs:element ref="f:super"/>
+                <xs:element ref="f:referenceType"/>
+            </xs:sequence>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="classType" type="f:classType"/>
-	<xs:complexType name="classType">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="typeArguments" minOccurs="0"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:classOrInterfaceType"/>
-				<xs:element ref="f:dot"/>
-				<xs:element ref="f:identifier"/>
-				<xs:element ref="f:typeArguments" minOccurs="0"/>
-				<xs:element ref="f:identifier"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="primitiveType" type="f:primitiveType"/>
+    <xs:complexType name="primitiveType">
+        <xs:choice>
+            <xs:element ref="f:numericType"/>
+            <xs:element ref="f:boolean"/>
+        </xs:choice>
+    </xs:complexType>
 
-	<xs:element name="interfaceType" type="f:interfaceType"/>
-	<xs:complexType name="interfaceType">
-		<xs:sequence>
-			<xs:element ref="f:classType"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeVariable" type="f:typeVariable"/>
-	<xs:complexType name="typeVariable">
-		<xs:sequence>
-			<xs:element ref="f:identifier"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="arrayType" type="f:arrayType"/>
-	<xs:complexType name="arrayType">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:primitiveType"/>
-				<xs:element ref="f:dims"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:classOrInterfaceType"/>
-				<xs:element ref="f:dims"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:typeVariable"/>
-				<xs:element ref="f:dims"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="dims" type="f:dims"/>
-	<xs:complexType name="dims">
-		<xs:sequence>
-			<xs:element ref="f:squareBrackets"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="typeArgument" type="f:typeArgument"/>
-	<xs:complexType name="typeArgument">
-		<xs:choice>
-			<xs:element ref="f:referenceType"/>
-			<xs:element ref="f:wildcard"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="wildcard" type="f:wildcard"/>
-	<xs:complexType name="wildcard">
-		<xs:sequence>
-			<xs:element ref="f:questionMark"/>
-			<xs:element ref="f:wildCardBounds" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:element name="wildCardBounds" type="f:wildCardBounds"/>
-	<xs:complexType name="wildCardBounds">
-		<xs:choice>
-			<xs:sequence>
-				<xs:element ref="f:extends"/>
-				<xs:element ref="f:referenceType"/>
-			</xs:sequence>
-			<xs:sequence>
-				<xs:element ref="f:super"/>
-				<xs:element ref="f:referenceType"/>
-			</xs:sequence>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="primitiveType" type="f:primitiveType"/>
-	<xs:complexType name="primitiveType">
-		<xs:choice>
-			<xs:element ref="f:numericType"/>
-			<xs:element ref="f:boolean"/>
-		</xs:choice>
-	</xs:complexType>
-
-	<xs:element name="numericType" type="f:numericType"/>
-	<xs:complexType name="numericType">
-		<xs:choice>
-			<xs:element ref="f:int"/>
-			<xs:element ref="f:long"/>
-			<xs:element ref="f:short"/>
-			<xs:element ref="f:byte"/>
-			<xs:element ref="f:char"/>
-			<xs:element ref="f:float"/>
-			<xs:element ref="f:double"/>
-		</xs:choice>
-	</xs:complexType>
+    <xs:element name="numericType" type="f:numericType"/>
+    <xs:complexType name="numericType">
+        <xs:choice>
+            <xs:element ref="f:int"/>
+            <xs:element ref="f:long"/>
+            <xs:element ref="f:short"/>
+            <xs:element ref="f:byte"/>
+            <xs:element ref="f:char"/>
+            <xs:element ref="f:float"/>
+            <xs:element ref="f:double"/>
+        </xs:choice>
+    </xs:complexType>
 </xs:schema>

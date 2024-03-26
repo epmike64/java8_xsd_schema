@@ -28,6 +28,8 @@
 	<xs:element name="percent" type="xs:string" fixed="%"/>
 	<xs:element name="forwardSlash" type="xs:string" fixed="/"/>
 	<xs:element name="lessThanLessThan" type="xs:string" fixed="&lt;&lt;"/>
+	<xs:element name="moreThanMoreThan" type="xs:string" fixed="&gt;&gt;"/>
+	<xs:element name="moreThanMoreThanMoreThan" type="xs:string" fixed="&gt;&gt;&gt;"/>
 	<xs:element name="plusPlus" type="xs:string" fixed="++"/>
 	<xs:element name="plus" type="xs:string" fixed="+"/>
 	<xs:element name="minus" type="xs:string" fixed="-"/>
