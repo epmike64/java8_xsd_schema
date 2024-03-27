@@ -195,9 +195,9 @@
     <xs:complexType name="classBodyDeclaration">
         <xs:choice>
             <xs:element ref="f:classMemberDeclaration"/>
-            <xs:element ref="f:constructorDeclaration"/>
-            <xs:element ref="f:staticInitializer"/>
             <xs:element ref="f:instanceInitializer"/>
+            <xs:element ref="f:staticInitializer"/>
+            <xs:element ref="f:constructorDeclaration"/>
         </xs:choice>
     </xs:complexType>
 
@@ -253,7 +253,7 @@
     <xs:complexType name="variableDeclaratorList">
         <xs:sequence>
             <xs:element ref="f:variableDeclarator"/>
-            <xs:sequence minOccurs="0">
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="f:comma"/>
                 <xs:element ref="f:variableDeclarator"/>
             </xs:sequence>
