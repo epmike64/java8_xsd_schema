@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
-<compilationUnit xmlns="http://www.flint.com/flint-lang" xsi:schemaLocation="http://www.flint.com/flint-lang schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<compilationUnit xmlns="http://www.flint.com/flint-lang" xsi:schemaLocation="http://www.flint.com/flint-lang compilation-unit.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <packageDeclaration>
     <package>package</package>
     <qualifiedIdentifier>
