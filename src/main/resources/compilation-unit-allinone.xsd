@@ -561,35 +561,17 @@
         </xs:choice>
     </xs:complexType>
 
+
     <xs:element name="constructorDeclarator" type="f:constructorDeclarator"/>
     <xs:complexType name="constructorDeclarator">
         <xs:sequence>
-            <xs:element ref="f:constructorModifier" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="f:constructorDeclarator"/>
-            <xs:element ref="f:throws" minOccurs="0"/>
-            <xs:element ref="f:constructorBody"/>
+            <xs:element ref="f:typeParameters" minOccurs="0"/>
+            <xs:element ref="f:simpleTypeName"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:formalParameterList" minOccurs="0"/>
+            <xs:element ref="f:rightParen"/>
         </xs:sequence>
     </xs:complexType>
-
-    <!--	<xs:element name="constructorModifier" type="f:constructorModifier"/>-->
-    <!--	<xs:complexType name="constructorModifier">-->
-    <!--		<xs:choice>-->
-    <!--			<xs:element ref="f:public"/>-->
-    <!--			<xs:element ref="f:protected"/>-->
-    <!--			<xs:element ref="f:private"/>-->
-    <!--		</xs:choice>-->
-    <!--	</xs:complexType>-->
-
-
-    <!--	<xs:element name="constructorDeclarator" type="f:constructorDeclarator"/>-->
-    <!--	<xs:complexType name="constructorDeclarator">-->
-    <!--		<xs:sequence>-->
-    <!--			<xs:element ref="f:constructorModifier"/>-->
-    <!--			<xs:element ref="f:constructorDeclarator"/>-->
-    <!--			<xs:element ref="f:throws" minOccurs="0"/>-->
-    <!--			<xs:element ref="f:constructorBody"/>-->
-    <!--		</xs:sequence>-->
-    <!--	</xs:complexType>-->
 
     <xs:element name="simpleTypeName" type="f:simpleTypeName"/>
     <xs:complexType name="simpleTypeName">
@@ -601,7 +583,7 @@
 
     <xs:element name="constructorBody" type="f:constructorBody"/>
     <xs:complexType name="constructorBody">
-        <xs:sequence>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="f:explicitConstructorInvocation" minOccurs="0"/>
             <xs:element ref="f:blockStatements" minOccurs="0"/>
         </xs:sequence>
