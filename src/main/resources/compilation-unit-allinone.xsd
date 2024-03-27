@@ -741,7 +741,7 @@
     <xs:element name="interfaceModifier" type="f:interfaceModifier"/>
     <xs:complexType name="interfaceModifier">
         <xs:choice>
-<!--            <xs:element ref="f:Annonation"/>-->
+            <xs:element ref="f:annotation"/>
             <xs:element ref="f:public"/>
             <xs:element ref="f:protected"/>
             <xs:element ref="f:private"/>
