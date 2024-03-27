@@ -107,11 +107,41 @@
     <xs:element name="typeParameter" type="f:typeParameter"/>
     <xs:complexType name="typeParameter">
         <xs:sequence>
-
+            <xs:element ref="f:typeParameterModifier" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="f:identifier"/>
             <xs:element ref="f:typeBound" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="typeParameterModifier" type="f:typeParameterModifier"/>
+    <xs:complexType name="typeParameterModifier">
+        <xs:choice>
+            <xs:element ref="f:annotation"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="annotation" type="f:annotation"/>
+    <xs:complexType name="annotation">
+        <xs:sequence>
+            <xs:element ref="f:at"/>
+            <xs:element ref="f:typeName"/>
+            <xs:element ref="f:leftParen"/>
+            <xs:element ref="f:elementValuePairsList" minOccurs="0"/>
+            <xs:element ref="f:rightParen"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="elementValuePairsList" type="f:elementValuePairsList"/>
+    <xs:complexType name="elementValuePairsList">
+        <xs:sequence>
+            <xs:element ref="f:elementValuePair"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="f:comma"/>
+                <xs:element ref="f:elementValuePair"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
 
     <xs:element name="typeBound" type="f:typeBound"/>
     <xs:complexType name="typeBound">
@@ -695,25 +725,23 @@
         </xs:choice>
     </xs:complexType>
 
+
     <xs:element name="normalInterfaceDeclaration" type="f:normalInterfaceDeclaration"/>
     <xs:complexType name="normalInterfaceDeclaration">
-        <xs:choice>
-            <xs:sequence>
-                <xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="f:interface"/>
-                <xs:element ref="f:identifier"/>
-                <xs:element ref="f:typeParameters" minOccurs="0"/>
-            </xs:sequence>
-            <xs:sequence>
-                <xs:element ref="f:extendsInterfaces" minOccurs="0"/>
-                <xs:element ref="f:interfaceBody"/>
-            </xs:sequence>
-        </xs:choice>
+        <xs:sequence>
+            <xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:interface"/>
+            <xs:element ref="f:identifier"/>
+            <xs:element ref="f:typeParameters" minOccurs="0"/>
+            <xs:element ref="f:extendsInterfaces" minOccurs="0"/>
+            <xs:element ref="f:interfaceBody"/>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:element name="interfaceModifier" type="f:interfaceModifier"/>
     <xs:complexType name="interfaceModifier">
         <xs:choice>
+<!--            <xs:element ref="f:Annonation"/>-->
             <xs:element ref="f:public"/>
             <xs:element ref="f:protected"/>
             <xs:element ref="f:private"/>
@@ -879,6 +907,7 @@
         <xs:choice>
             <xs:element ref="f:conditionalExpression"/>
             <xs:element ref="f:elementValueArrayInitializer"/>
+            <xs:element ref="f:annotation"/>
         </xs:choice>
     </xs:complexType>
 
