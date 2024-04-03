@@ -588,7 +588,6 @@
                     <xs:element ref="f:this"/>
                     <xs:element ref="f:super"/>
                 </xs:choice>
-                <xs:element ref="f:this"/>
                 <xs:element ref="f:argumentList"/>
             </xs:sequence>
 
