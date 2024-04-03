@@ -48,7 +48,7 @@
     <xs:complexType name="normalClassDeclaration">
         <xs:sequence>
             <xs:element ref="f:classModifier" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="f:simpleTypeName"/>
+            <xs:element name="className" type="f:identifier"/>
             <xs:element name="superClass" type="f:qualifiedIdentifier" minOccurs="0"/>
             <xs:element name="superInterfaces" type="f:interfaceType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="f:classBodyDeclaration"/>
@@ -323,9 +323,9 @@
 
     <xs:element name="constructorBody" type="f:constructorBody"/>
     <xs:complexType name="constructorBody">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element ref="f:explicitConstructorInvocation" minOccurs="0"/>
-            <xs:element ref="f:blockStatements" minOccurs="0"/>
+        <xs:sequence>
+            <xs:element ref="f:explicitConstructorInvocation" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:blockStatements"  minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -360,9 +360,8 @@
     <xs:complexType name="normalInterfaceDeclaration">
         <xs:sequence>
             <xs:element ref="f:interfaceModifier" minOccurs="0" maxOccurs="unbounded"/>
-<!--            <xs:element ref="f:interface"/>-->
-            <xs:element ref="f:identifier"/>
-            <xs:element ref="f:extendsInterfaces" minOccurs="0"/>
+            <xs:element name="interfaceName" type="f:identifier"/>
+            <xs:element name="extendsInterfaces" type="f:interfaceType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="f:interfaceBody"/>
         </xs:sequence>
     </xs:complexType>
@@ -390,9 +389,7 @@
     <xs:element name="interfaceBody" type="f:interfaceBody"/>
     <xs:complexType name="interfaceBody">
         <xs:sequence>
-
             <xs:element ref="f:interfaceMemberDeclaration" minOccurs="0" maxOccurs="unbounded"/>
-
         </xs:sequence>
     </xs:complexType>
 
@@ -509,25 +506,6 @@
         </xs:sequence>
     </xs:complexType>
 
-<!--    <xs:element name="elementValuePairList" type="f:elementValuePairList"/>-->
-<!--    <xs:complexType name="elementValuePairList">-->
-<!--        <xs:sequence>-->
-<!--            <xs:element ref="f:elementValuePair"/>-->
-<!--            <xs:sequence minOccurs="0" maxOccurs="unbounded">-->
-<!--                <xs:element ref="f:comma"/>-->
-<!--                <xs:element ref="f:elementValuePair"/>-->
-<!--            </xs:sequence>-->
-<!--        </xs:sequence>-->
-<!--    </xs:complexType>-->
-
-<!--    <xs:element name="elementValuePair" type="f:elementValuePair"/>-->
-<!--    <xs:complexType name="elementValuePair">-->
-<!--        <xs:sequence>-->
-<!--            <xs:element ref="f:identifier"/>-->
-<!--            <xs:element ref="f:equals"/>-->
-<!--            <xs:element ref="f:elementValue"/>-->
-<!--        </xs:sequence>-->
-<!--    </xs:complexType>-->
 
 
     <xs:element name="elementValue" type="f:elementValue"/>
@@ -600,9 +578,9 @@
     <xs:element name="blockStatement" type="f:blockStatement"/>
     <xs:complexType name="blockStatement">
         <xs:choice>
-            <xs:element ref="f:localVariableDeclarationStatement"/>
-            <xs:element ref="f:classDeclaration"/>
-            <xs:element ref="f:statement"/>
+            <xs:element ref="f:localVariableDeclarationStatement" minOccurs="0" maxOccurs="unbounded"/>
+<!--            <xs:element ref="f:classDeclaration"/>-->
+            <xs:element ref="f:statement" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
     </xs:complexType>
 
@@ -610,7 +588,6 @@
     <xs:complexType name="localVariableDeclarationStatement">
         <xs:sequence>
             <xs:element ref="f:localVariableDeclaration"/>
-<!--            <xs:element ref="f:semicolon"/>-->
         </xs:sequence>
     </xs:complexType>
 
