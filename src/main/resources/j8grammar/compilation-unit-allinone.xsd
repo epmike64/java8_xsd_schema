@@ -395,19 +395,12 @@
 
     <xs:element name="methodHeader" type="f:methodHeader"/>
     <xs:complexType name="methodHeader">
-        <xs:choice>
-            <xs:sequence>
-                <xs:element ref="f:result"/>
-                <xs:element ref="f:methodDeclarator"/>
-                <xs:element ref="f:throws" minOccurs="0"/>
-            </xs:sequence>
-            <xs:sequence>
-                <xs:element ref="f:typeParameters"/>
-                <xs:element ref="f:result"/>
-                <xs:element ref="f:methodDeclarator"/>
-                <xs:element ref="f:throws" minOccurs="0"/>
-            </xs:sequence>
-        </xs:choice>
+        <xs:sequence>
+            <xs:element ref="f:typeParameters" minOccurs="0"/>
+            <xs:element ref="f:result"/>
+            <xs:element ref="f:methodDeclarator"/>
+            <xs:element ref="f:throws" minOccurs="0"/>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:element name="result" type="f:result"/>
