@@ -24,7 +24,6 @@
     <xs:element name="importDeclaration" type="f:importDeclaration"/>
     <xs:complexType name="importDeclaration">
         <xs:sequence>
-            <xs:element ref="f:static" minOccurs="0"/>
             <xs:element ref="f:qualifiedIdentifier"/>
         </xs:sequence>
     </xs:complexType>
@@ -41,7 +40,7 @@
     <xs:complexType name="classDeclaration">
         <xs:choice>
             <xs:element ref="f:normalClassDeclaration"/>
-<!--            <xs:element ref="f:enumDeclaration"/>-->
+            <xs:element ref="f:enumDeclaration"/>
         </xs:choice>
     </xs:complexType>
 
@@ -50,9 +49,9 @@
     <xs:complexType name="normalClassDeclaration">
         <xs:sequence>
             <xs:element ref="f:classModifier" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="f:identifier"/>
-            <xs:element ref="f:superClass" minOccurs="0"/>
-            <xs:element name="superInterfaces" type="f:interfaceTypeList"/>
+            <xs:element name="classSimpleName"  type="f:identifier"/>
+            <xs:element name="superClass" type="f:qualifiedIdentifier" minOccurs="0"/>
+            <xs:element name="superInterfaces" type="f:interfaceType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="f:classBodyDeclaration"/>
         </xs:sequence>
     </xs:complexType>
@@ -72,69 +71,6 @@
 
 
 
-    <xs:element name="typeParameterList" type="f:typeParameterList"/>
-    <xs:complexType name="typeParameterList">
-        <xs:sequence>
-            <xs:element ref="f:typeParameter" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="typeParameter" type="f:typeParameter"/>
-    <xs:complexType name="typeParameter">
-        <xs:sequence>
-            <xs:element ref="f:typeParameterModifier" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="f:identifier"/>
-            <xs:element ref="f:typeBound" minOccurs="0"/>
-        </xs:sequence>
-    </xs:complexType>
-
-
-
-
-
-
-
-    <xs:element name="typeBound" type="f:typeBound"/>
-    <xs:complexType name="typeBound">
-        <xs:sequence>
-            <xs:element ref="f:extends"/>
-            <xs:element ref="f:classType"/>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="f:ampersand"/>
-                <xs:element ref="f:interfaceType"/>
-            </xs:sequence>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="superClass" type="f:superClass"/>
-    <xs:complexType name="superClass">
-        <xs:sequence>
-            <xs:element ref="f:extends"/>
-            <xs:choice>
-                <xs:element ref="f:typeVariable"/>
-                <xs:element ref="f:classOrInterfaceType"/>
-                <xs:element ref="f:additionalBound" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:choice>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="additionalBound" type="f:additionalBound"/>
-    <xs:complexType name="additionalBound">
-        <xs:sequence>
-            <xs:element ref="f:ampersand"/>
-            <xs:element ref="f:interfaceType"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="interfaceTypeList" type="f:interfaceTypeList"/>
-    <xs:complexType name="interfaceTypeList">
-        <xs:sequence>
-            <xs:element ref="f:interfaceType" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
-
-
-
     <xs:element name="classBodyDeclaration" type="f:classBodyDeclaration"/>
     <xs:complexType name="classBodyDeclaration">
         <xs:choice>
@@ -143,8 +79,6 @@
             <xs:element ref="f:methodDeclaration"/>
         </xs:choice>
     </xs:complexType>
-
-
 
 
     <xs:element name="fieldDeclaration" type="f:fieldDeclaration"/>
@@ -305,19 +239,13 @@
 
     <xs:element name="methodHeader" type="f:methodHeader"/>
     <xs:complexType name="methodHeader">
-        <xs:choice>
-            <xs:sequence>
-                <xs:element ref="f:result"/>
-                <xs:element ref="f:methodDeclarator"/>
-                <xs:element ref="f:throws" minOccurs="0"/>
-            </xs:sequence>
-            <xs:sequence>
-                <xs:element ref="f:result"/>
-                <xs:element ref="f:methodDeclarator"/>
-                <xs:element ref="f:throws" minOccurs="0"/>
-            </xs:sequence>
-        </xs:choice>
+        <xs:sequence>
+            <xs:element ref="f:result"/>
+            <xs:element ref="f:methodDeclarator"/>
+            <xs:element ref="f:throws" minOccurs="0"/>
+        </xs:sequence>
     </xs:complexType>
+
 
     <xs:element name="result" type="f:result"/>
     <xs:complexType name="result">
