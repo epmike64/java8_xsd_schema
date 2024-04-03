@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.flint.com/flint-lang"
+           xmlns:f="http://www.flint.com/flint-lang"
+           elementFormDefault="qualified">
+
+
+    <xs:element name="compilationUnit" type="f:compilationUnit"/>
+    <xs:complexType name="compilationUnit">
+        <xs:sequence>
+            <xs:element ref="f:packageDeclaration" minOccurs="0"/>
+            <xs:element ref="f:importDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:typeDeclaration" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="packageDeclaration" type="f:packageDeclaration"/>
+    <xs:complexType name="packageDeclaration">
+        <xs:sequence>
+            <xs:element name="packageName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="importDeclaration" type="f:importDeclaration"/>
+    <xs:complexType name="importDeclaration">
+        <xs:sequence>
+            <xs:element name="importValue" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="typeDeclaration" type="f:typeDeclaration"/>
+    <xs:complexType name="typeDeclaration">
+        <xs:choice>
+            <xs:element ref="f:classDeclaration"/>
+<!--            <xs:element ref="f:interfaceDeclaration"/>-->
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classDeclaration" type="f:classDeclaration"/>
+    <xs:complexType name="classDeclaration">
+        <xs:sequence>
+<!--            <xs:element ref="f:modifiers" minOccurs="0"/>-->
+
+            <xs:element name="className" type="f:identifier"/>
+            <xs:element ref="f:superClass"/>
+            <xs:element ref="f:superInterfaces" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:classBody"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="classBodyDeclaration" type="f:classBodyDeclaration"/>
+    <xs:complexType name="classBodyDeclaration">
+        <xs:choice>
+            <xs:element ref="f:classMemberDeclaration"/>
+<!--            <xs:element ref="f:instanceInitializer"/>-->
+<!--            <xs:element ref="f:staticInitializer"/>-->
+            <xs:element ref="f:constructorDeclaration"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="classMemberDeclaration" type="f:classMemberDeclaration"/>
+    <xs:complexType name="classMemberDeclaration">
+        <xs:choice>
+            <xs:element ref="f:fieldDeclaration"/>
+            <xs:element ref="f:methodDeclaration"/>
+<!--            <xs:element ref="f:classDeclaration"/>-->
+<!--            <xs:element ref="f:interfaceDeclaration"/>-->
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:element name="fieldDeclaration" type="f:fieldDeclaration"/>
+    <xs:complexType name="fieldDeclaration">
+        <xs:sequence>
+            <xs:element ref="f:fieldModifier" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="f:unannType"/>
+            <xs:element ref="f:variableDeclaratorList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="fieldModifier" type="f:fieldModifier"/>
+    <xs:complexType name="fieldModifier">
+        <xs:choice>
+            <xs:element ref="f:public"/>
+            <xs:element ref="f:protected"/>
+            <xs:element ref="f:private"/>
+            <xs:element ref="f:static"/>
+            <xs:element ref="f:final"/>
+            <xs:element ref="f:transient"/>
+            <xs:element ref="f:volatile"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:element name="unannType" type="f:unannType"/>
+    <xs:complexType name="unannType">
+        <xs:choice>
+            <xs:element ref="f:unannPrimitiveType"/>
+            <xs:element ref="f:unannReferenceType"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:element name="unannPrimitiveType" type="f:unannPrimitiveType"/>
+    <xs:complexType name="unannPrimitiveType">
+        <xs:choice>
+            <xs:element ref="f:numericType"/>
+            <xs:element ref="f:boolean"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="type" type="f:type"/>
+    <xs:complexType name="type">
+        <xs:choice>
+            <xs:element ref="f:primitiveType"/>
+            <xs:element ref="f:referenceType"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+
+
+    <xs:element name="referenceType" type="f:referenceType"/>
+    <xs:complexType name="referenceType">
+        <xs:sequence>
+            <xs:element ref="f:memoryReference"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="memoryReference" type="f:memoryReference"/>
+    <xs:simpleType name="memoryReference">
+        <xs:restriction base="xs:unsignedLong"/>
+    </xs:simpleType>
+
+    <xs:element name="literal" type="f:literal"/>
+    <xs:complexType name="literal">
+        <xs:choice>
+            <xs:element name="integerLiteral" type="xs:string"/>
+            <xs:element name="floatingPointLiteral" type="xs:string"/>
+            <xs:element name="booleanLiteral" type="xs:string"/>
+            <xs:element name="characterLiteral" type="xs:string"/>
+            <xs:element name="stringLiteral" type="xs:string"/>
+            <xs:element name="nullLiteral" type="xs:string"/>
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:complexType name="integerLiteral">
+        <xs:sequence>
+            <xs:element name="decimalIntegerLiteral" type="xs:string"/>
+            <xs:element name="hexIntegerLiteral" type="xs:string"/>
+            <xs:element name="octalIntegerLiteral" type="xs:string"/>
+            <xs:element name="binaryIntegerLiteral" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="abstract" type="xs:string" fixed="abstract"/>
+    <xs:element name="assert" type="xs:string" fixed="assert"/>
+    <xs:element name="boolean" type="xs:string" fixed="boolean"/>
+    <xs:element name="break" type="xs:string" fixed="break"/>
+    <xs:element name="byte" type="xs:string" fixed="byte"/>
+    <xs:element name="case" type="xs:string" fixed="case"/>
+    <xs:element name="catch" type="xs:string" fixed="catch"/>
+    <xs:element name="char" type="xs:string" fixed="char"/>
+    <xs:element name="class" type="xs:string" fixed="class"/>
+    <xs:element name="const" type="xs:string" fixed="const"/>
+    <xs:element name="continue" type="xs:string" fixed="continue"/>
+    <xs:element name="default" type="xs:string" fixed="default"/>
+    <xs:element name="do" type="xs:string" fixed="do"/>
+    <xs:element name="double" type="xs:string" fixed="double"/>
+    <xs:element name="else" type="xs:string" fixed="else"/>
+    <xs:element name="enum" type="xs:string" fixed="enum"/>
+    <xs:element name="extends" type="xs:string" fixed="extends"/>
+    <xs:element name="final" type="xs:string" fixed="final"/>
+    <xs:element name="float" type="xs:string" fixed="float"/>
+    <xs:element name="for" type="xs:string" fixed="for"/>
+    <xs:element name="goto" type="xs:string" fixed="goto"/>
+    <xs:element name="if" type="xs:string" fixed="if"/>
+
+    <xs:element name="implements" type="xs:string" fixed="implements"/>
+    <xs:element name="import" type="xs:string" fixed="import"/>
+    <xs:element name="instanceof" type="xs:string" fixed="instanceof"/>
+    <xs:element name="int" type="xs:string" fixed="int"/>
+    <xs:element name="interface" type="xs:string" fixed="interface"/>
+    <xs:element name="long" type="xs:string" fixed="long"/>
+    <xs:element name="native" type="xs:string" fixed="native"/>
+    <xs:element name="new" type="xs:string" fixed="new"/>
+    <xs:element name="null" type="xs:string" fixed="null"/>
+    <xs:element name="package" type="xs:string" fixed="package"/>
+    <xs:element name="private" type="xs:string" fixed="private"/>
+    <xs:element name="protected" type="xs:string" fixed="protected"/>
+    <xs:element name="public" type="xs:string" fixed="public"/>
+    <xs:element name="return" type="xs:string" fixed="return"/>
+    <xs:element name="short" type="xs:string" fixed="short"/>
+    <xs:element name="static" type="xs:string" fixed="static"/>
+    <xs:element name="strictfp" type="xs:string" fixed="strictfp"/>
+    <xs:element name="super" type="xs:string" fixed="super"/>
+    <xs:element name="switch" type="xs:string" fixed="switch"/>
+    <xs:element name="synchronized" type="xs:string" fixed="synchronized"/>
+    <xs:element name="this" type="xs:string" fixed="this"/>
+    <xs:element name="throw" type="xs:string" fixed="throw"/>
+    <xs:element name="transient" type="xs:string" fixed="transient"/>
+    <xs:element name="try" type="xs:string" fixed="try"/>
+    <xs:element name="void" type="xs:string" fixed="void"/>
+    <xs:element name="volatile" type="xs:string" fixed="volatile"/>
+    <xs:element name="while" type="xs:string" fixed="while"/>
+
+
+    <xs:element name="identifier" type="f:identifier"/>
+    <xs:simpleType name="identifier">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+            <xs:pattern value="[a-zA-Z_][a-zA-Z0-9_]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:element name="primitiveType" type="f:primitiveType"/>
+    <xs:complexType name="primitiveType">
+        <xs:choice>
+            <xs:element ref="f:numericType"/>
+            <xs:element ref="f:boolean"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:element name="numericType" type="f:numericType"/>
+    <xs:complexType name="numericType">
+        <xs:choice>
+            <xs:element ref="f:int"/>
+            <xs:element ref="f:long"/>
+            <xs:element ref="f:short"/>
+            <xs:element ref="f:byte"/>
+            <xs:element ref="f:char"/>
+            <xs:element ref="f:float"/>
+            <xs:element ref="f:double"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:simpleType name="int">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-2147483648"/>
+            <xs:maxInclusive value="2147483647"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="long">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-9223372036854775808"/>
+            <xs:maxInclusive value="9223372036854775807"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="float">
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+    <xs:simpleType name="double">
+        <xs:restriction base="xs:double"/>
+    </xs:simpleType>
+    <xs:simpleType name="boolean">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:simpleType name="char">
+        <xs:restriction base="xs:string">
+            <xs:length value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="byte">
+        <xs:restriction base="xs:byte"/>
+    </xs:simpleType>
+    <xs:simpleType name="short">
+        <xs:restriction base="xs:short"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="string">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="void">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="void"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="null">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="null"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+</xs:schema>

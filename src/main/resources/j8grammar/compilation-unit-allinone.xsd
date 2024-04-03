@@ -2652,21 +2652,4 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:element name="basicType" type="f:basicType"/>
-    <xs:complexType name="basicType">
-        <xs:choice>
-            <xs:element name="int" type="f:int"/>
-            <xs:element name="long" type="f:long"/>
-            <xs:element name="float" type="f:float"/>
-            <xs:element name="double" type="f:double"/>
-            <xs:element name="boolean" type="f:boolean"/>
-            <xs:element name="char" type="f:char"/>
-            <xs:element name="byte" type="f:byte"/>
-            <xs:element name="short" type="f:short"/>
-            <xs:element name="string" type="f:string"/>
-            <xs:element name="void" type="f:void"/>
-            <xs:element name="null" type="f:null"/>
-        </xs:choice>
-    </xs:complexType>
-
 </xs:schema>
